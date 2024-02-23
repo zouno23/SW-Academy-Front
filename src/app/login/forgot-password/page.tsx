@@ -10,7 +10,7 @@ const  ForgotPassword = async() =>{
   
     return (   
         <AuthBackground>
-          <div className=" bg-white dark:bg-slate-950 z-10 rounded-3xl w-2/5 h-3/5 flex justify-center items-center gap-y-8 flex-col overflow-hidden shadow-md  ">
+          <div className=" bg-white dark:bg-slate-950 z-10 rounded-3xl md:w-2/5 w-full h-full md:h-3/5 flex justify-center items-center gap-y-8 flex-col overflow-hidden shadow-md  ">
              {pageState==`forgot-password-verif-code`?<ResetCodeForm/>:<Form/>}  
              </div>
              </AuthBackground>

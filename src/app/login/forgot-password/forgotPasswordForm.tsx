@@ -60,7 +60,7 @@ function ForgotPasswordForm() {
                 >
                    Send code </Button>
                   
-                <Button variant="ghost" > 
+                <Button variant="ghost" type="button"> 
                   <Link href="/login" className='flex font-semibold justify-center items-center text-sm text-[#0D47A1] '>
                     <ChevronLeft />
                     Back to Login Page
