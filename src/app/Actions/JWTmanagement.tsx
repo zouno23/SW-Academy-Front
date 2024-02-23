@@ -4,7 +4,7 @@ import { AxiosResponseType } from "./AxiosTypes";
 const cookieStore = cookies()
 
 
-export const SetJWT = (response:AxiosResponseType)=>{4
+export const SetJWT = (response:AxiosResponseType)=>{
    
     cookies().set("jwt",response.headers?.jwt)
 }
