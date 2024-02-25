@@ -33,7 +33,7 @@ export const resetpassword = async (formdata:FormData)=>{
     try {
         const jwt = GetJWT();
         const response : AxiosResponseType  = await axios.post ("http://localhost:9000/reset-password", {Password} , {
-            headers: { Authorization: `Bearer ${jwt}` },
+            headers: { Authorization: `${jwt}` },
           })
         return {error : null , response: response.data}
     } catch (error: any) {
