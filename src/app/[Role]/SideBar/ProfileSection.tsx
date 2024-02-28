@@ -14,7 +14,7 @@ export default async function ProfileSection({}) {
               <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-          <h4 className="font-semibold text-xl">Good Morning {response.Result.FullName.split(" ").slice(0,1)}</h4>
+          <h4 className="font-semibold text-xl">Good Morning {response.Result.FullName?.split(" ").slice(0,1)}</h4>
           <h6 className=" text-sm font-medium text-gray-700/70 ">Continue your journey and achieve  your goals</h6>
           </div>
           </div>
