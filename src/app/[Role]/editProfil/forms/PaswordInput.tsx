@@ -2,11 +2,12 @@
 import { Input, InputProps } from "@/components/ui/input";
 import React, { useState , useEffect, useRef} from "react";
 import { Eye, EyeOff} from "lucide-react"
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
  
 
+  // eslint-disable-next-line react/display-name
   const PasswordInput = React.forwardRef<HTMLInputElement, InputProps> (
     ({ className, name,type , pattern , ...props }, ref ) =>{
     
@@ -48,11 +49,11 @@ import { cn } from "@/lib/utils";
         inputRef.current.setCustomValidity(error[0]);
             }
     }
-  }, [error]);
+  }, [error, type]);
   
     
     return (  
-    <div className="flex  relative w-9/12">
+    <div className="flex  relative w-full">
     <Input
       pattern={pattern}
       name={name}
