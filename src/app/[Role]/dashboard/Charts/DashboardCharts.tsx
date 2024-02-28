@@ -8,8 +8,8 @@ async function  DashboardCharts() {
     const {error1,response1}= await GetLessonsProgress()
     if  (error1) throw new Error(error1);
     return ( <div className="flex w-full gap-8 static  ">
-        <BarChart Data={response.Result}/>
-        <DoughnutChart Data={response1.Average}/>
+        <BarChart Data={response?.Result}/>
+        <DoughnutChart Data={response1?.Average}/>
     </div> );
 }
 

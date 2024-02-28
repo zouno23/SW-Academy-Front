@@ -10,9 +10,11 @@ Chart.register(CategoryScale);
 
 function BarChart({Data}: any) { 
     
+    const {theme,setTheme} =useTheme()
     const years = ["2024","2023","2022","2021"]
     const [year,setYear]=useState("2024")    
     const  Lessons =[0,0,0,0,0,0,0,0,0,0,0,0]
+    if(!Data) return null
     const YearData=Data[year]
     if(YearData){
         Lessons.map((index,i)=>{
@@ -21,7 +23,6 @@ function BarChart({Data}: any) {
         })
     }
 
-const {theme,setTheme} =useTheme()
 const chartColor = theme === 'dark' ? 'rgb(243, 244, 246)' : 'rgba(37,99,235,0.3)';
 const labels = ["January","February","March","April","May","June","July","August", "September","October","November","December"];
 const data = {
@@ -80,7 +81,7 @@ const options={
         <Popover >
             <PopoverTrigger asChild><Button>{year}</Button></PopoverTrigger>
             <PopoverContent className='flex flex-col w-32 gap-2'> 
-            {years.map((index)=>index!=year && <Button onClick={()=>setYear(index)}>{index}</Button>)}
+            {years.map((index)=>index!=year && <Button onClick={()=>setYear(index)} key={index}>{index}</Button>)}
             </PopoverContent>
         </Popover>
         </div>
