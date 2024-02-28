@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SideBar from "./(Side Bar)/SideBar";
+import SideBar from "./SideBar/SideBar";
 
 export const metadata: Metadata = {
   title: "SW-Academy",
@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
       
       <section className="h-screen absolute w-screen overflow-hidden flex" >
+        
       <SideBar/>
       {children}
         

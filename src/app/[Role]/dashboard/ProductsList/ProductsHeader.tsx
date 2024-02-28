@@ -1,6 +1,6 @@
 function ProductsHeader() {
     return ( 
-    <div className="w-full h-fit px-8 py-5 flex items-center gap-32 justify-between font-bold bg-slate-950 text-white rounded-xl  text-base ">
+    <div className="w-full h-fit px-8 py-5 flex items-center gap-32 justify-between font-bold bg-slate-950 text-white rounded-xl text-base dark:text-black dark:bg-slate-50 ">
     <h2 className="w-3/6">Course Title</h2>
     <div className=" gap-16 flex w-4/6 px-1 ">
     <h2>Total Lectures</h2>
