@@ -13,8 +13,10 @@ function content() {
        <Title/>
         <Picform/>
        
-     
-       <Form/>
+     <div className='  flex justify-center'>
+     <Form/>
+
+     </div>
 
        
 
