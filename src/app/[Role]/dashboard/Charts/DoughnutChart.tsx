@@ -1,9 +1,6 @@
 "use client"
-import { GetLessonsProgress } from '@/app/Actions/DashboardActions';
-import { sleep } from '@/lib/utils'
 import Chart, { CategoryScale } from 'chart.js/auto'
 import { useTheme } from 'next-themes';
-import { useEffect } from 'react';
 import { Doughnut } from "react-chartjs-2"
 Chart.register(CategoryScale);
 
@@ -19,8 +16,8 @@ const doughnutOptions = {
     legend: {
       display: false,
     }
+  },
   }
-}
 
 const doughnutData = {
   labels: ['Overall Progress'],
@@ -40,7 +37,7 @@ const doughnutData = {
     circumference:
       Data*360,
     rotation:
-       5,
+       0,
     cutout: 90
   }]
 }
@@ -49,12 +46,15 @@ const doughnutData = {
 
    
   return (
-    <div className="w-1/3 bg-white rounded-2xl p-4 grow-0 dark:bg-slate-900 ">
+    <div className="w-1/3 bg-white rounded-2xl p-4 grow-0 dark:bg-slate-900  ">
       <div className='w-fit grid place-items-center'>
         <h2 className='font-bold text-xl'>Progress</h2>
-        <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Overall progress on lessons</h4>
-      </div>
+        <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Overall progress on Courses</h4>
+      </div>{
+        Data!=0?
        <Doughnut data={doughnutData} options={doughnutOptions} width={340} height={340} updateMode='resize' />
+      :<p className='flex w-full h-full justify-center items-center text-xl font-semibold text-black/50 dark:text-white/50' >You have no progress so far</p>
+      }
     </div>
   );
 }

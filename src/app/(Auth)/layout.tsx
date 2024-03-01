@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import SideBar from "./SideBar/SideBar";
 import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
 
@@ -14,11 +13,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const IsLoggedIn = GetJWT()
-  if (!IsLoggedIn) redirect("/login")
+  if (IsLoggedIn) redirect("/student")
 return (
       
       <section className="h-screen absolute w-screen overflow-hidden flex" >
-      <SideBar/>
       {children}
         
         </section>

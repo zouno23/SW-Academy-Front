@@ -74,4 +74,5 @@ import { cn } from "@/lib/utils";
     );
 }
   )
+  PasswordInput.displayName = "PasswordInput"
 export default PasswordInput;

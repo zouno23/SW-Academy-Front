@@ -6,6 +6,7 @@ import { sendGoogleToken } from "@/app/Actions/AuthActions";
 import { Button } from "./ui/button";
 import GoogleLogo from "@/../public/googlelogo.svg"
 import Image from "next/image";
+import { SetToLocalStorage } from "@/app/Hooks/LocalStorage";
 
 function GoogleAuthButton() {
     const {toast} = useToast() 
@@ -22,7 +23,9 @@ function GoogleAuthButton() {
               })
             }
             else if(response){
-              router.push("/dashboard")
+              if (SetToLocalStorage(response.Result))
+                router.push(`/${response.Result.userRole}/dashboard`)
+              else toast({description: error?.message || 'An unknown error occured' ,variant:'error',duration:3000})
             }
             else{
               toast({

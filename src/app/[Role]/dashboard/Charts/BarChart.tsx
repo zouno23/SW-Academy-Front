@@ -5,6 +5,7 @@ import { Bar } from "react-chartjs-2";
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 Chart.register(CategoryScale);
 
@@ -13,25 +14,25 @@ function BarChart({Data}: any) {
     const {theme,setTheme} =useTheme()
     const years = ["2024","2023","2022","2021"]
     const [year,setYear]=useState("2024")    
-    const  Lessons =[0,0,0,0,0,0,0,0,0,0,0,0]
+    const  Courses =[0,0,0,0,0,0,0,0,0,0,0,0]
     if(!Data) return null
     const YearData=Data[year]
     if(YearData){
-        Lessons.map((index,i)=>{
-            Lessons[i]=YearData[i+1+""] || 0
+        Courses.map((index,i)=>{
+            Courses[i]=YearData[i+1+""] || 0
             
         })
     }
 
 const chartColor = theme === 'dark' ? 'rgb(243, 244, 246)' : 'rgba(37,99,235,0.3)';
-const labels = ["January","February","March","April","May","June","July","August", "September","October","November","December"];
+const labels = ["Jan","Feb","Mar","April","May","June","July","Aug", "Sept","Oct","Nov","Dec"];
 const data = {
   labels: labels,
   datasets: [{
-    label: 'Lessons completed',
+    label: 'Courses completed',
     barPercentage: 1,
     minBarLength: 10,
-    data: Lessons,
+    data: Courses,
     backgroundColor: chartColor,
     borderColor: chartColor,
     hoverBackgroundColor:"rgb(37,99,235)",
@@ -49,10 +50,9 @@ const options={
     scales:{
         y: {
             display:false,
-            beginAtZero: false
+            beginAtZero: true
         },
        x:{
-        display:false,
         grid:{
             display:false
         },
@@ -76,12 +76,12 @@ const options={
         <div className='flex justify-between'>
         <div className='w-fit grid place-items-center pb-2'>
             <h2 className='font-bold text-xl'>Overview</h2>
-            <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Lesssons completed / month</h4>
+            <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Courses completed / month</h4>
         </div>
         <Popover >
-            <PopoverTrigger asChild><Button>{year}</Button></PopoverTrigger>
-            <PopoverContent className='flex flex-col w-32 gap-2'> 
-            {years.map((index)=>index!=year && <Button onClick={()=>setYear(index)} key={index}>{index}</Button>)}
+            <PopoverTrigger asChild><Button variant="ghost" className='border p-3 font-semibold gap-3'>{year}<ChevronDown className='size-5 pt-[0.7'/></Button></PopoverTrigger>
+            <PopoverContent className='flex flex-col w-24 gap-2 p-0'> 
+            {years.map((index)=>index!=year && <Button onClick={()=>setYear(index)} key={index} variant="ghost">{index}</Button>)}
             </PopoverContent>
         </Popover>
         </div>

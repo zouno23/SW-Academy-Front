@@ -1,6 +1,6 @@
 "use client"; 
 
-import { login} from "../Actions/AuthActions"
+import { login} from "../../Actions/AuthActions"
 import React, {useRef} from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ import PasswordInput from "@/components/PasswordInput";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import GoogleAuthButton from "@/components/GoogleAuthButton";
+import {SetToLocalStorage} from "../../Hooks/LocalStorage";
 
 export default  function LoginForm() {
   const {toast} = useToast() 
@@ -31,7 +32,9 @@ export default  function LoginForm() {
       FormRef.current?.reset();
       const {error,response} = await login(FormData);
       if(response){
-        router.push("/dashboard")
+        if (SetToLocalStorage(response.Result))
+          router.push(`/${response.Result.userRole}/dashboard`)
+        else toast({description: error?.message || 'An unknown error occured' ,variant:'error',duration:3000})
       }
       else if (error){
         toast({

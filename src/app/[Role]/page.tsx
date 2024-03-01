@@ -1,11 +1,14 @@
-import { useRouter } from "next/navigation"; 
-function Page({ params }: { params: { Role: string } }) {
-    localStorage.setItem("role/params", params?.Role);
-    const role = localStorage.getItem("role") || ""
-    const router = useRouter()
+"use client"
+
+import { redirect } from "next/navigation"; 
+import { GetUserLocalStorage } from "../Hooks/LocalStorage";
+import { useEffect } from "react";
+function Page() {
+    const role = GetUserLocalStorage()?.Role
+    useEffect(()=>{
+    redirect(`/${role}/dashboard`)})
     return ( 
         <>
-            {router.push(`/${params?.Role}/dashboard`)}
         </>
      );
 }

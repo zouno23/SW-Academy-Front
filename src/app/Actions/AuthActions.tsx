@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { AxiosErrorType, AxiosResponseType } from "./AxiosTypes";
+import { SetJWT } from "./JWTmanagement";
 
 
 
@@ -14,7 +15,7 @@ export const login = async (formData: FormData) =>{
       Email : email ,
       Password : pwd
     })
-    
+    SetJWT(response);
     return {error:null , response:response.data}
   
   } catch (error:any) {
@@ -34,6 +35,7 @@ export const login = async (formData: FormData) =>{
           FullName: fullname,
           Email : email ,
           Password : pwd})
+          SetJWT(response);
       return {error:null , response:response.data}
     } catch (error:any) {
       const e :AxiosErrorType = error;
@@ -44,6 +46,7 @@ export const login = async (formData: FormData) =>{
   export const sendGoogleToken = async (token:string) => {
     try {
      const response:AxiosResponseType= await axios.post ("http://localhost:9000/login/google", { token })
+     SetJWT(response);
      return {error:null , response:response.data}
     } catch (error:any) {
       const e :AxiosErrorType = error;

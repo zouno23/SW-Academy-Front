@@ -33,18 +33,17 @@ const Navigation = [{
 }
 ]
 export default function NavigationButtons() {
-    const pathname = usePathname()
-    const state = pathname.split("/")[2]
-    useEffect(()=>
-    console.log(state)
-    ) 
+    const pathname = usePathname() // get the path of the current page
+    var state = pathname.split("/")[2] //get the the current page name or path
     return (<div className="grid w-full gap-4">
               {
               Navigation.map((item, index) => 
-              <Button className={cn("flex w-full gap-3 justify-start p-2 bg-white text-gray-400 hover:bg-blue-600/65 hover:text-white dark:bg-transparent dark:text-gray-400 dark:hover:bg-blue-600/65 dark:hover:text-white", item.page.toLocaleLowerCase()==state  && "bg-blue-600 text-white dark:bg-blue dark:text-white dark:hover:bg-blue-600")}>
+              <Link href={`/${pathname.split("/")[1]+"/"+item.page.toLocaleLowerCase().replace(" ","")}`} key={index}>
+              <Button className={cn("flex w-full gap-3 justify-start p-2 bg-white text-gray-400 hover:bg-blue-600/65 hover:text-white dark:bg-transparent dark:text-gray-400 dark:hover:bg-blue-600/65 dark:hover:text-white", item.page.toLocaleLowerCase().replace(" ","").localeCompare(state)==0  && "bg-blue-600 hover:bg-blue-600 text-white dark:bg-blue dark:text-white dark:hover:bg-blue-600")}>
                 {item.icon}
-                <h4 className=" text-base">{item.page} </h4>  
+                <h4 className=" text-sm" >{item.page} </h4>  
                 </Button>
+              </Link>
                 )
                }
 

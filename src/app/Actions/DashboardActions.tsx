@@ -31,11 +31,11 @@ export const GetCardsNumbers= async ()=>{
     }
 }
 
-export const GetLessonsPerMonth = async ()=>{
+export const GetCoursesPerMonth = async ()=>{
     try {
         const jwt = GetJWT();
         if (!jwt) throw  new Error('No JWT available ')
-        const response : AxiosResponseType = await axios.get (url+"/Dashboard/completed-lessons-per-month",{headers: { Authorization: `Bearer ${jwt}` }});
+        const response : AxiosResponseType = await axios.get (url+"/Dashboard/completed-Courses-per-month",{headers: { Authorization: `Bearer ${jwt}` }});
     return{error:null , response:response.data}
     } catch (error:any) {
         const e: AxiosErrorType  = error
@@ -43,11 +43,11 @@ export const GetLessonsPerMonth = async ()=>{
     }
 }
 
-export const GetLessonsProgress = async ()=>{
+export const GetCoursesProgress = async ()=>{
     try {
         const jwt = GetJWT()
         if (!jwt) throw  new Error ('No JWT available')
-        const response : AxiosResponseType = await axios.get(url+"/Dashboard/LessonsProgress",{headers: { Authorization: `Bearer ${jwt}` }});
+        const response : AxiosResponseType = await axios.get(url+"/Dashboard/CoursesProgress",{headers: { Authorization: `Bearer ${jwt}` }});
         return {error1:null , response1:response.data}
     } catch (error:any) {
         const e: AxiosErrorType  = error

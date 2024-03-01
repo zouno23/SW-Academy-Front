@@ -11,6 +11,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import PasswordInput from "@/components/PasswordInput";
 import GoogleAuthButton from "@/components/GoogleAuthButton";
+import { SetToLocalStorage } from "../../Hooks/LocalStorage";
 
 export default  function SignupForm() {
 
@@ -29,7 +30,9 @@ export default  function SignupForm() {
       FormRef.current?.reset();
       const {error , response } =await signup(FormData);
       if (response){
-        router.push("/dashboard")
+        if (SetToLocalStorage(response.Result))
+          router.push(`/${response.Result.userRole}/dashboard`)
+        else toast({description: error?.message || 'An unknown error occured' ,variant:'error',duration:3000})
       }
       else if(error){
         toast({
