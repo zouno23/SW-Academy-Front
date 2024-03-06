@@ -22,8 +22,10 @@ export default async function ProfileSection({}) {
               <Button className="size-9 rounded-full p-0 border border-gray-500/70 " variant="ghost"><Settings className="size-4" strokeWidth={1.75} /> </Button>
               <Button className="size-9 rounded-full p-0 border border-gray-500/70 " variant="ghost"><Inbox className="size-4" strokeWidth={1.75} /> </Button>
               <Popover>
-                <PopoverTrigger className="size-9 rounded-full p-0 border border-gray-500/70 flex justify-center items-center ">
+                <PopoverTrigger asChild>
+                <Button className="size-9 rounded-full p-0 border border-gray-500/70 " variant="ghost">
                 <Bell className="size-4" strokeWidth={1.75} /> 
+                </Button>
                 </PopoverTrigger>
                 <PopoverContent className="w-40 bg-white rounded shadow-lg px-4 py-5 space-y-6 font-medium text-gray-700 p-6 max-w-md">
                     aa <br /> aa

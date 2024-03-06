@@ -17,7 +17,7 @@ async function Dashboard(
         
            <main className="bg-gray-100 w-full h-full overflow-auto p-8 flex flex-col gap-8 dark:bg-black ">
             <Header/>
-            {/* <DashboardCards/> */}
+            <DashboardCards/>   
             <DashboardCharts/>
            <ProductsTable searchParams={searchParams} />
           

@@ -5,8 +5,8 @@ async function DashboardCards() {
     const {error,response} = await GetCardsNumbers()
     if(error) throw error
     const items =[
-        {index:1, title:"Total Courses",stats:response?.Result.CoursePacks},
-        {index:2,title:"Complete lessons" ,stats:response?.Result.Lessons},
+        {index:1, title:"Total Bootcamps",stats:response?.Result.BootCamps},
+        {index:2,title:"Complete Courses" ,stats:response?.Result.Courses},
         {index:3,title:"Achieved Certificates",stats:response?.Result.Certificates}
     ]
     return ( <div className='flex justify-between gap-8'>

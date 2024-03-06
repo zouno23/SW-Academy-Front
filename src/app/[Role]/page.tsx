@@ -1,14 +1,10 @@
-"use client"
-
 import { redirect } from "next/navigation"; 
-import { GetUserLocalStorage } from "../Hooks/LocalStorage";
-import { useEffect } from "react";
+import { GetRole } from "../Actions/RoleCookieManagement";
 function Page() {
-    const role = GetUserLocalStorage()?.Role
-    useEffect(()=>{
-    redirect(`/${role}/dashboard`)})
+    const role = GetRole()
     return ( 
         <>
+        {redirect(`/${role}/dashboard`)}
         </>
      );
 }

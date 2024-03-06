@@ -3,6 +3,7 @@
 import axios from "axios";
 import { AxiosErrorType, AxiosResponseType } from "./AxiosTypes";
 import { SetJWT } from "./JWTmanagement";
+import { SetRole } from "./RoleCookieManagement";
 
 
 
@@ -16,6 +17,7 @@ export const login = async (formData: FormData) =>{
       Password : pwd
     })
     SetJWT(response);
+    SetRole(response.data.Result.userRole)
     return {error:null , response:response.data}
   
   } catch (error:any) {
@@ -36,6 +38,7 @@ export const login = async (formData: FormData) =>{
           Email : email ,
           Password : pwd})
           SetJWT(response);
+          SetRole(response.data.Result.userRole)
       return {error:null , response:response.data}
     } catch (error:any) {
       const e :AxiosErrorType = error;
@@ -47,6 +50,7 @@ export const login = async (formData: FormData) =>{
     try {
      const response:AxiosResponseType= await axios.post ("http://localhost:9000/login/google", { token })
      SetJWT(response);
+     SetRole(response.data.Result.userRole)
      return {error:null , response:response.data}
     } catch (error:any) {
       const e :AxiosErrorType = error;

@@ -2,8 +2,8 @@
 
 import axios from "axios";
 import { AxiosErrorType, AxiosResponseType } from "./AxiosTypes";
-
-import { GetJWT,SetJWT } from "./JWTmanagement";
+import { DestroyJWT, GetJWT,SetJWT } from "./JWTmanagement";
+import { SetRole } from "./RoleCookieManagement";
 
 export const forgotPassword =async (formData: FormData)=>{
    try {
@@ -35,6 +35,7 @@ export const resetpassword = async (formdata:FormData)=>{
         const response : AxiosResponseType  = await axios.post ("http://localhost:9000/reset-password", {Password} , {
             headers: { Authorization: `Bearer ${jwt}` },
           })
+        DestroyJWT()
         return {error : null , response: response.data}
     } catch (error: any) {
         const e: AxiosErrorType  = error

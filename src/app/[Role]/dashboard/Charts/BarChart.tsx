@@ -90,6 +90,7 @@ const options={
         data={data}
         options={options}
         updateMode='resize'
+         
         />
       </div>);
 }

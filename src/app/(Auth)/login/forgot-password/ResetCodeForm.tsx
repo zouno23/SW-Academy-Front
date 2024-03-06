@@ -98,7 +98,6 @@ function ResetCodeForm() {
                     input.focus()
             }
             else{
-                
                 router.push("/login/forgot-password/reset-password");
             }
         }
