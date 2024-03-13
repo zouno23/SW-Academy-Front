@@ -4,6 +4,8 @@ import axios from "axios"
 import { AxiosErrorType, AxiosResponseType } from "./AxiosTypes"
 import { GetJWT } from "./JWTmanagement"
 const url ="http://localhost:9000"
+
+//student
 export const GetUserProfile = async ()=>{
     try {
         const jwt = GetJWT()
@@ -65,4 +67,55 @@ try {
     const e: AxiosErrorType  = error
         return{error: e.response?.data, response:null}
 }
+}
+
+//teacher
+
+export const GetTeacherStats = async ()=>{
+     try {
+        const jwt = GetJWT()
+        if(!jwt) throw new Error ("No JWT available")
+        const response : AxiosResponseType = await axios.get(url+"/Dashboard/courseStats",{headers: { Authorization: `Bearer ${jwt}` }});
+    return {error:null , response:response.data}
+     } catch (error:any) {
+        const e: AxiosErrorType  = error
+            return{error: e.response?.data, response:null}
+    }
+}
+
+
+export const GetTeacherAgenda = async ()=>{
+    try {
+        const jwt = GetJWT()
+        if(!jwt) throw new Error ("No JWT available")
+        const response : AxiosResponseType = await axios.get(url+"/Dashboard/agenda",{headers: { Authorization: `Bearer ${jwt}` }});
+    return {error1:null , response1:response.data}
+     } catch (error:any) {
+        const e: AxiosErrorType  = error
+            return{error1: e.response?.data, response1:null}
+    }
+}
+
+export const GetTeacherCourseSellings = async ()=>{
+    try {
+        const jwt = GetJWT()
+        if(!jwt) throw new Error ("No JWT available")
+        const response : AxiosResponseType = await axios.get(url+"/Dashboard/sold-courses-per-month",{headers: { Authorization: `Bearer ${jwt}` }});
+    return {error:null , response:response.data}
+     } catch (error:any) {
+        const e: AxiosErrorType  = error
+            return{error: e.response?.data, response:null}
+    }
+}
+
+export const TeacherBestCourses = async ()=>{
+    try {
+        const jwt = GetJWT()
+        if(!jwt) throw new Error ("No JWT available")
+        const response : AxiosResponseType = await axios.get(url+"/Dashboard/BestCourses",{headers: { Authorization: `Bearer ${jwt}` }});
+    return {error:null , response:response.data}
+     } catch (error:any) {
+        const e: AxiosErrorType  = error
+            return{error: e.response?.data, response:null}
+    }
 }

@@ -5,7 +5,9 @@ import { LayoutDashboard,UserRoundCog,Notebook,Airplay,Webhook,Brain} from 'luci
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { GetUserLocalStorage } from "@/app/Hooks/LocalStorage";
 
 const Navigation = [{
   page: "Dashboard",
@@ -35,6 +37,12 @@ const Navigation = [{
 export default function NavigationButtons() {
     const pathname = usePathname() // get the path of the current page
     var state = pathname.split("/")[2] //get the the current page name or path
+    const router = useRouter();
+    const userData =GetUserLocalStorage();
+    useEffect(()=>{
+      if (userData?.Role != pathname.split( "/")[1])
+      router.replace(`/${userData?.Role}/${pathname.split("/")[2]}`)
+    },[pathname])  
     return (<div className="grid w-full gap-4">
               {
               Navigation.map((item, index) => 
