@@ -8,8 +8,7 @@ function Home() {
     <div className="h-screen  flex justify-center gap-10 items-center" >
       <Button>
       <Link
-        href="/login"
-      >
+        href="/login" >
         login
       </Link>
       </Button>

@@ -10,6 +10,7 @@ import ReactCrop, {
 } from "react-image-crop";
 import NextImage  from "next/image" ;
 import setCanvasPreview from "./SetCanvasPreview";
+import { UploadImage } from "@/app/Actions/EditProfilAction";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -17,6 +18,7 @@ const MIN_DIMENSION = 150;
 const ImageCropper = ({ closeModal, updateAvatar }:any) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const previewCanvasRef =  useRef<HTMLCanvasElement | null>(null);
+  const [fil, setfil] = useState<File>();
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState <Crop> ( {
     unit: '%', // Can be 'px' or '%'
@@ -29,10 +31,14 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
   const [error, setError] = useState("");
   const fillerImage = new Image();
   let fillerCanvas:HTMLCanvasElement 
-
-  const onSelectFile = (e:React.ChangeEvent<HTMLInputElement>) => {
+//Selectfile+envoyer l'image vers backend 
+  const onSelectFile = async (e:React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    if (e.target.files?.[0])
+      setfil(e.target.files?.[0])
     if (!file) return;
+    
+
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -51,6 +57,13 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
       setImgSrc(imageUrl);
     });
     reader.readAsDataURL(file);
+    //  //-----------------------------------------
+    //  const formData= new FormData()
+     
+    //   await formData.append('file',file)
+    //  console.log("ds"+file.name)
+    //  UploadImage(formData)
+ 
   };
 
   const onImageLoad = (e: { currentTarget: { width: any; height: any; }; }) => {
@@ -105,7 +118,7 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
     </ReactCrop>
     <button
       className="text-white font-mono text-xs py-2 px-4 rounded-2xl mt-4 bg-sky-500 hover:bg-sky-600"
-      onClick={() => {
+      onClick={(e) => {
         if (imgRef){
           setCanvasPreview(
              imgRef.current || fillerImage , // HTMLImageElement
@@ -121,6 +134,8 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
         const dataUrl = previewCanvasRef.current?.toDataURL();
         console.log(dataUrl);
         updateAvatar(dataUrl);
+        
+        
         closeModal();
       }}
     >
