@@ -3,14 +3,22 @@ import Chart from 'chart.js/auto'
 import { CategoryScale } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { useTheme } from 'next-themes';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { GetUserLocalStorage } from '@/app/Hooks/LocalStorage';
+import { cn } from '@/lib/utils';
 Chart.register(CategoryScale);
 
 function BarChart({Data}: any) { 
-    
+    const [state , setState]= useState("")
+    const userData = GetUserLocalStorage()
+    useEffect (()=>
+    {
+        if (userData?.Role === "Teacher") setState("sold") 
+        else setState("completed")
+},[])
     const {theme,setTheme} =useTheme()
     const years = ["2024","2023","2022","2021"]
     const [year,setYear]=useState("2024")    
@@ -72,11 +80,11 @@ const options={
     }
     
     return (
-        <div className="w-2/3 bg-white  rounded-2xl p-4 grow-0 dark:bg-slate-900"> 
+        <div className={cn("min-w-1/2 max-w-2/3 bg-white flex flex-col rounded-2xl p-4 flex-shrink max-md:w-full flex-grow-0 justify-between dark:bg-slate-900 w-2/3",userData?.Role === "Teacher" && "w-1/2")}> 
         <div className='flex justify-between'>
         <div className='w-fit grid place-items-center pb-2'>
             <h2 className='font-bold text-xl'>Overview</h2>
-            <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Courses completed / month</h4>
+            <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Courses {state} / month</h4>
         </div>
         <Popover >
             <PopoverTrigger asChild><Button variant="ghost" className='border p-3 font-semibold gap-3'>{year}<ChevronDown className='size-5 pt-[0.7'/></Button></PopoverTrigger>
@@ -90,6 +98,7 @@ const options={
         data={data}
         options={options}
         updateMode='resize'
+         
         />
       </div>);
 }

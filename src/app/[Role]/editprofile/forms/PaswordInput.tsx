@@ -61,7 +61,7 @@ import { cn } from "@/lib/utils";
         {passwordValidation(e.target.value);
       }}
       type={Shown}
-      className={cn("bg-[#E9F1FE] border border-[E9F1FE]  rounded-lg  block  p-2.5 focus-visible:ring-2  focus-visible:ring-offset-0 focus-visible:ring-[#2752B8]",className)}
+      className={cn("mb-4 bg-slate-100 focus-visible:ring-offset-0 focus-visible:ring-[#2752B8]",className)}
       placeholder="•••••••••"
       required
       {...props}

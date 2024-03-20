@@ -5,7 +5,8 @@ import { AxiosResponseType } from "./AxiosTypes";
 
 
 export const SetJWT = (response:AxiosResponseType)=>{
-   cookies().set("jwt",response.headers?.jwt)
+    const oneDay=1*24*60*60; // 1 day in seconds
+   cookies().set("jwt",response.headers?.jwt , {maxAge:oneDay})
 }
 
 export const GetJWT =  ()=>{

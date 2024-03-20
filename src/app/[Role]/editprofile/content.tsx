@@ -7,7 +7,7 @@ import { Separator } from '@/components/ui/separator';
 
 function content() {
   return (
-    <div className='   overflow-auto relative rounded-2xl my-5 pb-12  border-solid h-full  border-2 w-full bg-white border-gray-100'>
+    <div className='    relative rounded-2xl my-5 pb-12  border-solid h-max  border-2 w-full bg-white border-gray-100'>
 
        
        <Title/>
