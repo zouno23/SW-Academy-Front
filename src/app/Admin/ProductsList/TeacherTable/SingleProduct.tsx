@@ -17,16 +17,16 @@ function SingleProduct({Data, openModal, }:{Data:teacher,openModal:any }) {
     <div className="w-full h-28 flex items-center text-black/50 justify-between font-medium hover:bg-slate-50 hover:text-black/80 dark:hover:bg-slate-950 dark:text-white">
         <div className="flex h-full w-1/4 items-center gap-6 p-4 text-black  dark:text-white">
         <Image alt="product" width={120} height={120} src={p} className="size-24 bg-slate-200 rounded-lg px-3"/>
-        <p className={Data.status ? 'text-green-700 ' : 'text-red-700 '}>{Data.teacherName}</p>
+        <p className={Data.Status ? 'text-green-700 ' : 'text-red-700 '}>{Data.Name}</p>
 
         
         </div>
         <div className=" flex w-5/6  px-5 justify-between">
-        <p className=" pr-5 "> {Data.email}</p>
-        <p className=" pr-5"> {Data.number}</p>
-        <p className=" pr-5"> {Data.courses}</p>
-       {!Data.status && <p className=" pr-5">-- </p>}
-        {Data.status && <p className=" pr-5"> {Data.availability}</p>} 
+        <p className=" w-4/12 "> {Data.email}</p>
+        <p className=" w-3/12 text-start pl-[60px]     "> {Data.numero}</p>
+        <p className=" w-1/6 text-start pl-[20px] "> {Data.Courses}</p>
+       {!Data.Status && <p className=" w-1/6">-- </p>}
+        {Data.Status && <p className=" w-1/6 "> {Data.availability}</p>} 
 
         <div className=" text-end pr-[40px] flex justify-center">
         <Popover>

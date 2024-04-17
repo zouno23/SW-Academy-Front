@@ -9,11 +9,13 @@ export type Lesson = {
   progress: string
   action: string
 }
-export type teacher = {
-  teacherName:string
+export type Student = {
+  _id:string
+  Name:string
   email:string 
-  number: string
-  courses:String 
+  Role:String
+  numero: string
+  Courses:String 
   availability: "true"|"false"
-  status:true|false
+  Status:true|false
 }

@@ -13,7 +13,7 @@ import {
     {
         max:number
         searchParams:{
-            [key: string] : string | undefined
+            [key: string] : string | undefined | any
         }
     })
     {

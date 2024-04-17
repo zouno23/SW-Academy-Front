@@ -36,6 +36,9 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
     const file = e.target.files?.[0];
     if (e.target.files?.[0])
       setfil(e.target.files?.[0])
+  // const formdata=new FormData;
+  //   formdata.append("file",file as File)
+  //  await UploadImage(formdata)
     if (!file) return;
     
 

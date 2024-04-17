@@ -49,7 +49,7 @@ export const UploadImage= async(formData:FormData)=>{
   const response:AxiosResponseType=  await axios.post <AxiosResponseType>("http://localhost:9000/profile/updateImg"
   ,{
         file
-  }, {headers: { Authorization: `Bearer ${jwt}` }})
+  }, {headers: { Authorization: `Bearer ${jwt}` , "Content-Type":"multipart/form-data"},})
   return {error:null , response:response.data}
 }catch(error:any){
   const e :AxiosErrorType = error;

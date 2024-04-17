@@ -7,7 +7,7 @@ function ProductsHeader() {
             
             <h2 className=" w-3/12">Phone Number</h2>
             <h2 className=" w-1/6">Courses</h2>
-            <h2 className=" ">Status</h2>
+            <h2 className="w-1/6 ">Status</h2>
 
          </div>
     </div> );
