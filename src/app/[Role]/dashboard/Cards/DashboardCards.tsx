@@ -17,7 +17,7 @@ async function DashboardCards() {
         const {error,response}=await GetTeacherStats()
         if (error)throw error;
          items =[
-            {index:1, title:"Average Rating",stats:response?.Result.averageRating+"/5.0"},
+            {index:1, title:"Average Rating",stats:(parseFloat(response?.Result.averageRating)||"0.0")+"/5.0"},
             {index:2,title:"Total Courses" ,stats:response?.Result.totalCourses},
             {index:3,title:"Online Courses",stats:response?.Result.liveCourses}
         ]}

@@ -46,7 +46,7 @@ const doughnutData = {
 
    
   return (
-    <div className="w-1/3 bg-white rounded-2xl p-4 grow-0 shrink-0 dark:bg-slate-900  ">
+    <div className="w-1/3 max-md:w-full md:h-full  bg-white rounded-2xl p-4 grow-0 shrink-0 dark:bg-slate-900  ">
       <div className='w-fit grid place-items-center'>
         <h2 className='font-bold text-xl'>Progress</h2>
         <h4 className=' font-normal text-xs text-black/70 dark:text-white/70'>Overall progress on Courses</h4>

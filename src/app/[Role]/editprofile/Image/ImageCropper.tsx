@@ -10,6 +10,7 @@ import ReactCrop, {
 } from "react-image-crop";
 import NextImage  from "next/image" ;
 import setCanvasPreview from "./SetCanvasPreview";
+import { UploadImage } from "@/app/Actions/EditProfilAction";
 
 const ASPECT_RATIO = 1;
 const MIN_DIMENSION = 150;
@@ -26,13 +27,47 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
     height: 50
   });
 
+  const handleImage = async (data: any) => {
+    console.log(data)
+    // Decode base64 string
+    const binaryString = atob(data.split(',')[1]);
+  
+    // Convert binary string to ArrayBuffer
+    const arrayBuffer = new ArrayBuffer(binaryString.length);
+    const uint8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < binaryString.length; i++) {
+      uint8Array[i] = binaryString.charCodeAt(i);
+    }
+  
+    // Create Blob from ArrayBuffer
+    const blob = new Blob([arrayBuffer], { type: 'image/jpeg' });
+  
+    // Create a File from Blob
+    const croppedFile = new File([blob], 'cropss  ped_image.jpg', {
+      type: 'image/jpeg',
+      lastModified: Date.now()
+    });
+  
+    // Create FormData and append the File
+    const formData = new FormData();
+    formData.append('file', croppedFile);
+  
+    // Upload the cropped image
+    const res = await UploadImage(formData);
+  };
+  
   const [error, setError] = useState("");
   const fillerImage = new Image();
   let fillerCanvas:HTMLCanvasElement 
 
-  const onSelectFile = (e:React.ChangeEvent<HTMLInputElement>) => {
+  const onSelectFile = async (e:React.ChangeEvent<HTMLInputElement>) => {
+    console.log("hey")
     const file = e.target.files?.[0];
+    console.log(file ,'file')
     if (!file) return;
+    // const formData = new FormData()
+    // formData.append('file', file)
+    // const data=await UploadImage(formData)
 
     const reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -116,10 +151,11 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
               imgRef.current?.height || 1
             )
           );
-
+          
         }
         const dataUrl = previewCanvasRef.current?.toDataURL();
-        console.log(dataUrl);
+        handleImage(dataUrl)
+        // console.log(dataUrl);
         updateAvatar(dataUrl);
         closeModal();
       }}
@@ -133,7 +169,7 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
     ref={previewCanvasRef}
     className="mt-4"
     style={{
-      display: "none",
+      display:"none",
       border: "1px solid black",
       objectFit: "contain",
       width: 150,

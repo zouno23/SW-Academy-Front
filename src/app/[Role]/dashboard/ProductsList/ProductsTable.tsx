@@ -43,7 +43,7 @@ async function ProductsTable(
     <div className=" h-max divide-y-[1px]  p-8 min-h-max">
         <ProductsHeader/>
         { Lessons.map((index,i)=>
-            i< (5 * parseInt(ListePage))  &&  i> ((5 * (parseInt(ListePage)-1))-1) ?
+            i< (10 * parseInt(ListePage))  &&  i> ((10 * (parseInt(ListePage)-1))-1) ?
             <SingleProduct Data={index} key={i} /> : null )}
         <Counter searchParams={searchParams} max={Math.round(Lessons.length/5)}/>
     </div>
