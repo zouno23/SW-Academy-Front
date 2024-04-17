@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import SideBar from "./SideBar/SideBar";
+import SideBar from "./SideBar/page";
 import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
 import { GetRole } from "../Actions/RoleCookieManagement";
@@ -23,9 +23,8 @@ export default function RootLayout({
 return (
       
       <section className="h-screen relative w-screen overflow-hidden flex" >
-      <SideBar/>
+      <SideBar parent="layout"/>
       {children}
-        
         </section>
   );
 

@@ -16,10 +16,9 @@ async function  DashboardCharts() {
                 <DoughnutChart Data={ response1?.Average}/>
             </div>)
     }else if(role === "Teacher") {
-        const {error , response}=await GetTeacherCourseSellings()
-        if(error)throw new Error(error)
-        const {error1,response1}= await GetTeacherAgenda()
-        if(error1) throw new Error(error1)
+            const {error , response}=await GetTeacherCourseSellings()
+            const {error1,response1}= await GetTeacherAgenda()
+            if(error1) throw new Error(error1)
         return ( 
             <div className="flex w-full gap-8 max-md:flex-col ">
                 <BarChart Data={response?.Result}/>

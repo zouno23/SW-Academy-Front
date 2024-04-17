@@ -43,17 +43,30 @@ export const ChangePassword = async (formData:FormData)=>{
 
     }}
 
-export const UploadImage= async(formData:FormData)=>{
- try{ const jwt = await GetJWT();
-  const file= formData.get("file");
-  const response:AxiosResponseType=  await axios.post <AxiosResponseType>("http://localhost:9000/profile/updateImg"
-  ,{
-        file
-  }, {headers: { Authorization: `Bearer ${jwt}` , "Content-Type":"multipart/form-data"},})
-  return {error:null , response:response.data}
-}catch(error:any){
-  const e :AxiosErrorType = error;
-  return {error:e.response?.data , response:null}
 
-}
-}
+
+    export const UploadImage = async (formData: FormData) => {
+      console.log("hey");
+      try {
+        console.log("he22y",formData);
+    
+        const jwt = GetJWT();
+    
+        const response: AxiosResponseType = await axios.post<AxiosResponseType>(
+          'http://localhost:9000/profile/updateImg',
+          
+            formData
+          ,
+          {
+            headers: { Authorization: `Bearer ${jwt}`, "Content-Type": "multipart/form-data" }
+          }
+        );
+    
+        console.log(response, formData);
+        return { error: null, response: response.data };
+      } catch (error: any) {
+        const e: AxiosErrorType = error;
+        console.log(error)
+        return { error: e.response?.data, response: null };
+      }
+    };

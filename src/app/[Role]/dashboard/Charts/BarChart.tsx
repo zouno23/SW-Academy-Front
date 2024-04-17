@@ -23,13 +23,13 @@ function BarChart({Data}: any) {
     const years = ["2024","2023","2022","2021"]
     const [year,setYear]=useState("2024")    
     const  Courses =[0,0,0,0,0,0,0,0,0,0,0,0]
-    if(!Data) return null
-    const YearData=Data[year]
-    if(YearData){
-        Courses.map((index,i)=>{
-            Courses[i]=YearData[i+1+""] || 0
-            
-        })
+    if(Data){
+        const YearData=Data[year]
+        if(YearData){
+            Courses.map((index,i)=>{
+                Courses[i]=YearData[i+1+""] || 0
+            })
+        }
     }
 
 const chartColor = theme === 'dark' ? 'rgb(243, 244, 246)' : 'rgba(37,99,235,0.3)';
@@ -37,7 +37,7 @@ const labels = ["Jan","Feb","Mar","April","May","June","July","Aug", "Sept","Oct
 const data = {
   labels: labels,
   datasets: [{
-    label: 'Courses completed',
+    label: `Courses ${state}`,
     barPercentage: 1,
     minBarLength: 10,
     data: Courses,

@@ -3,7 +3,6 @@
 import axios from "axios";
 import { AxiosErrorType, AxiosResponseType } from "./AxiosTypes";
 import { DestroyJWT, GetJWT,SetJWT } from "./JWTmanagement";
-import { SetRole } from "./RoleCookieManagement";
 
 export const forgotPassword =async (formData: FormData)=>{
    try {
