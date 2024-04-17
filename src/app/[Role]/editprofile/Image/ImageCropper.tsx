@@ -18,6 +18,7 @@ const MIN_DIMENSION = 150;
 const ImageCropper = ({ closeModal, updateAvatar }:any) => {
   const imgRef = useRef<HTMLImageElement>(null);
   const previewCanvasRef =  useRef<HTMLCanvasElement | null>(null);
+  const [fil, setfil] = useState<File>();
   const [imgSrc, setImgSrc] = useState("");
   const [crop, setCrop] = useState <Crop> ( {
     unit: '%', // Can be 'px' or '%'
@@ -86,6 +87,13 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
       setImgSrc(imageUrl);
     });
     reader.readAsDataURL(file);
+    //  //-----------------------------------------
+    //  const formData= new FormData()
+     
+    //   await formData.append('file',file)
+    //  console.log("ds"+file.name)
+    //  UploadImage(formData)
+ 
   };
 
   const onImageLoad = (e: { currentTarget: { width: any; height: any; }; }) => {
@@ -140,7 +148,7 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
     </ReactCrop>
     <button
       className="text-white font-mono text-xs py-2 px-4 rounded-2xl mt-4 bg-sky-500 hover:bg-sky-600"
-      onClick={() => {
+      onClick={(e) => {
         if (imgRef){
           setCanvasPreview(
              imgRef.current || fillerImage , // HTMLImageElement
@@ -157,6 +165,8 @@ const ImageCropper = ({ closeModal, updateAvatar }:any) => {
         handleImage(dataUrl)
         // console.log(dataUrl);
         updateAvatar(dataUrl);
+        
+        
         closeModal();
       }}
     >

@@ -25,17 +25,14 @@ export const EditProfile = async (formData:FormData)=>{
 
 
     }
-    
-
-
-
 }
+
 export const ChangePassword = async (formData:FormData)=>{
     try {
       const jwt = GetJWT();
         
         const pwd = formData.get("password");
-        const response:AxiosResponseType=  await axios.post <AxiosResponseType>("http://localhost:9000/signup",{
+        const response:AxiosResponseType=  await axios.post <AxiosResponseType>("http://localhost:9000/",{
          
           Password : pwd})
       return {error:null , response:response.data}
@@ -45,6 +42,7 @@ export const ChangePassword = async (formData:FormData)=>{
         return {error:e.response?.data , response:null}
 
     }}
+
 
 
     export const UploadImage = async (formData: FormData) => {
