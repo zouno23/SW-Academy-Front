@@ -5,13 +5,14 @@ export type NewCourseBasicInfoForm ={
     Description : string
 } | null
 
-export type CourseCoverMedia =  string |null
+export type CourseCoverMedia =   {Display?:string |null,Send?:File|null}| null
 
-type Article =  File
+type Article =  File | string
 export type Lesson =  {
     Title:string,
     Description?:string,
-    Articles ?:[Article] | null
+    Articles ?:[Article] | null,
+    Docs?: string[]
 }
 
 export type LessonsType = [Lesson|null]|null;

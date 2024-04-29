@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { searchParamsKeep } from "../Courses/ListPagination";
 
 function NewCourseHeader({searchParams}:
     {
@@ -25,6 +26,7 @@ function NewCourseHeader({searchParams}:
             </span>
         )
     }
+    const oldparams = searchParamsKeep("",searchParams)
     return ( 
 <div className="flex flex-col  w-full  justify-between items-center bg-blue-600 border rounded-xl divide-y-2 dark:bg-slate-900 ">
     <div  className="flex w-full  justify-between items-center py-8 px-8">
@@ -34,7 +36,11 @@ function NewCourseHeader({searchParams}:
         </div>
         <div className="w-1/2 flex gap-4 justify-end max-md:flex-col max-md:items-end">
             <Link href="/Teacher/courses"><Button className="bg-white text-blue-600 hover:bg-white/80 hover:text-blue-600">Back to Courses</Button></Link>
-            <Button className="bg-white text-blue-600 hover:bg-white/80 hover:text-blue-600">Save Course</Button>
+            <Link  href={"?save=true"+oldparams}> 
+                <Button className="bg-white text-blue-600 hover:bg-white/80 hover:text-blue-600">
+                Save Course
+                </Button> 
+                </Link>
         </div>
     </div>
 
