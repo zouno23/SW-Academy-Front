@@ -20,7 +20,6 @@ export function LessonsTable({ props }: { props: any }) {
       </TableHeader>
       <TableBody>
         {props.map((item: any) => {
-          console.log(item);
           return (
             <TableRow>
               <TableCell className="font-medium">{item?.Title}</TableCell>

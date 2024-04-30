@@ -1,11 +1,19 @@
+"use client";
 import Link from "next/link";
 import { Album, SquarePen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { GetRole } from "@/app/Actions/RoleCookieManagement";
+import { Dispatch, SetStateAction } from "react";
 
-export function CourseHeader({ Title }: { Title: string }) {
-  const role = GetRole();
+export function CourseHeaderEditMode({
+  Title,
+  IsDone,
+  setIsDone,
+}: {
+  Title: string;
+  IsDone: string;
+  setIsDone: Dispatch<SetStateAction<string>>;
+}) {
   return (
     <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40 rounded-xl">
       <Link className="lg:hidden" href="#">
@@ -16,14 +24,7 @@ export function CourseHeader({ Title }: { Title: string }) {
         <h1 className="font-semibold text-lg md:text-2xl">{Title}</h1>
       </div>
       <div className="flex items-center gap-2">
-        {role === "Teacher" ? (
-          <Link href="?state=Edit">
-            <Button size="icon" variant="ghost">
-              <SquarePen className="h-5 w-5" />
-              <span className="sr-only">Edit Course</span>
-            </Button>
-          </Link>
-        ) : null}
+        <Button onClick={() => setIsDone("false")}>Confirm</Button>
       </div>
     </header>
   );
