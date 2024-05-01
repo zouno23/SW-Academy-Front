@@ -1,4 +1,5 @@
-import { File, Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { File, Trash, Video } from "lucide-react";
 const Documents = [
   { Title: "Introduction to HTML.pdf", type: "File" },
   { Title: "CSS Fundamentals.pdf", type: "File" },
@@ -28,6 +29,12 @@ export function DocumentsTable({ props }: { props: any }) {
                 <span className="text-sm text-gray-500 dark:text-gray-400">
                   {Title}
                 </span>
+                <div className="ml-auto flex items-center gap-2">
+                  <Button size="sm" variant="ghost">
+                    <Trash className="h-4 w-4" />
+                    <span className="sr-only">Delete</span>
+                  </Button>
+                </div>
               </div>
             );
           })

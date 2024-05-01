@@ -1,5 +1,4 @@
 import StarsRating from "@/components/StarsRating";
-import { StarIcon } from "./page";
 import Image from "next/image";
 
 const Reviews = [

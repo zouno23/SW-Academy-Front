@@ -23,10 +23,18 @@ function Course({ props, role, type }: any) {
       <div className="flex h-full items-center gap-6 p-4 text-black w-1/2 dark:text-white ">
         <Image
           alt="product"
-          width={150}
+          width={200}
           height={150}
-          src={p}
-          className="size-24 bg-slate-200 rounded-lg px-3"
+          src={
+            role === "Teacher" || type === "All"
+              ? props?.Cover
+                ? "http://localhost:9000/" + props?.Cover
+                : p
+              : props?.Course?.Cover
+              ? "http://localhost:9000/" + props?.Course?.Cover
+              : p
+          }
+          className="size-24 border rounded-lg object-fit"
         />
         <div className="h-full flex flex-col justify-center gap-2 w-2/3">
           <h4 className="font-semibold">

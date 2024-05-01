@@ -20,11 +20,7 @@ import {
 import StarsRating from "@/components/StarsRating";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { AxiosResponseType } from "@/app/Actions/AxiosTypes";
-import { GetJWT } from "@/app/Actions/JWTmanagement";
-import axios from "axios";
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import { updateCourse } from "@/app/Actions/CoursesActions";
 
 function CourseDetailsEditMode({
