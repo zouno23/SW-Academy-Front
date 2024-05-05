@@ -1,10 +1,5 @@
 "use client";
-import {
-  AddLesson,
-  UploadDocumentation,
-  deleteLesson,
-  updateLesson,
-} from "@/app/Actions/CoursesActions";
+import { deleteLesson, updateLesson } from "@/app/Actions/CoursesActions";
 import { Button } from "@/components/ui/button";
 import {
   TableHead,
@@ -18,23 +13,10 @@ import { Textarea } from "@/components/ui/textarea";
 import { FileEdit, Trash } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { GetUserLocalStorage } from "@/app/Hooks/LocalStorage";
+import { AddNewLesson } from "./AddLesson";
 
-export function LessonsTable({ props }: { props: any }) {
+export function LessonsTable({ props, role }: { props: any; role: string }) {
   const path = usePathname();
-  const LS = GetUserLocalStorage();
-  const role = LS?.Role;
   const CourseId = path.split("/")[3];
   const [IsEdit, setIsEdit] = useState("");
   const [Lessons, setLessons] = useState(props);
@@ -66,89 +48,13 @@ export function LessonsTable({ props }: { props: any }) {
     >
       <div className="flex items-center justify-between p-4 md:p-6 ">
         <h2 className="text-lg font-semibold">Lessons</h2>
-        {role === "Teacher" ? (
-          <Dialog>
-            <DialogTrigger asChild>
-              <Button size="sm" className="mx-4">
-                Add Lesson
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="sm:max-w-[600px]">
-              <DialogHeader>
-                <DialogTitle>Add New Lesson</DialogTitle>
-                <DialogDescription>
-                  Fill out the form to create a new lesson.
-                </DialogDescription>
-              </DialogHeader>
-              <form
-                className="grid gap-4 py-4"
-                action={async (FormData) => {
-                  const Title = FormData.get("Title") as string;
-                  const Description = FormData.get("Description");
-                  const { error, response } = await AddLesson(CourseId, {
-                    Title,
-                    Description,
-                  });
-                  if (response) {
-                    const UploadResult = await UploadDocumentation(
-                      response.Result._id,
-                      CourseId,
-                      FormData
-                    );
-
-                    if (UploadResult.error) throw new error();
-                    setLessons([...Lessons, response.Result]);
-                  }
-                }}
-              >
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label className="text-right" htmlFor="title">
-                    Title
-                  </label>
-                  <Input
-                    className="col-span-3"
-                    id="title"
-                    name="Title"
-                    placeholder="Enter lesson title"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-start gap-4">
-                  <label className="text-right" htmlFor="description">
-                    Description
-                  </label>
-                  <Textarea
-                    className="col-span-3 min-h-[120px]"
-                    id="description"
-                    name="Description"
-                    placeholder="Enter lesson description"
-                  />
-                </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  <label className="text-right" htmlFor="file">
-                    File
-                  </label>
-                  <div className="col-span-3 flex items-center gap-2">
-                    <Input
-                      id="file"
-                      type="file"
-                      name="files"
-                      multiple
-                      max={5}
-                    />
-                  </div>
-                </div>
-                <DialogFooter>
-                  <DialogClose asChild>
-                    <Button type="submit">Save Lesson</Button>
-                  </DialogClose>
-                  <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
-                  </DialogClose>
-                </DialogFooter>
-              </form>
-            </DialogContent>
-          </Dialog>
-        ) : null}
+        {role === "Teacher" && (
+          <AddNewLesson
+            CourseId={CourseId}
+            setLessons={setLessons}
+            Lessons={Lessons}
+          />
+        )}
       </div>
       <Table>
         <TableHeader>
@@ -189,7 +95,7 @@ export function LessonsTable({ props }: { props: any }) {
               );
 
             return (
-              <TableRow>
+              <TableRow key={item?._id || 0}>
                 <TableCell className="font-medium">{item?.Title}</TableCell>
                 <TableCell>{item?.Description}</TableCell>
                 <TableCell className="hidden md:table-cell">

@@ -55,7 +55,7 @@ export function ReviewsTable({}) {
       <h2 className="text-lg font-semibold">Course Reviews</h2>
       <div className="mt-4 grid gap-6">
         {Reviews.map((item) => (
-          <div className="grid gap-2">
+          <div className="grid gap-2" key={item?.Review.Rating}>
             <div className="flex items-center gap-2">
               {item?.User?.Image}
               <div>
