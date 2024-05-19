@@ -4,6 +4,7 @@ import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
 import { GetRole } from "../Actions/RoleCookieManagement";
 import { headers } from "next/headers";
+import { LeavingMeetingDetection } from "./livestream/LeavingMeetingDetection";
 
 export const metadata: Metadata = {
   title: "SW-Academy",
@@ -22,6 +23,7 @@ export default function RootLayout({
     <section className="h-screen relative w-screen overflow-hidden flex">
       <SideBar parent="layout" />
       {children}
+      <LeavingMeetingDetection />
     </section>
   );
 }

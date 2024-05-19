@@ -2,24 +2,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 function Home() {
- 
   return (
-    <div className="h-screen  flex justify-center gap-10 items-center" >
-      <Button>
-      <Link
-        href="/login" >
-        login
+    <div className="h-screen  flex justify-center gap-10 items-center">
+      <Link href="/login">
+        <Button>login</Button>
       </Link>
-      </Button>
-      <Button>
-      <Link
-        href="/signup"
-      >
-        signup
+      <Link href="/signup">
+        <Button>signup</Button>
       </Link>
-      </Button>
-      
-     
     </div>
   );
 }

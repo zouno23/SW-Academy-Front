@@ -64,9 +64,15 @@ function AddNewDocument({ props }: any) {
             </label>
             <div className="col-span-3 flex items-center gap-2">
               <Select name="Lesson">
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a fruit" />
-                </SelectTrigger>
+                {props.length > 0 ? (
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a Lesson" />
+                  </SelectTrigger>
+                ) : (
+                  <SelectTrigger className="w-full" disabled>
+                    <SelectValue placeholder="No lessons to add document to" />
+                  </SelectTrigger>
+                )}
                 <SelectContent>
                   <SelectGroup>
                     {props.map((item: any) => {
