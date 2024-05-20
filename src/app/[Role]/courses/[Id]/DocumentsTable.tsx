@@ -1,11 +1,24 @@
 "use client";
 import { File, Trash, Video } from "lucide-react";
 import AddNewDocument from "./AddNewDocument";
+import { Button } from "@/components/ui/button";
 
 export function DocumentsTable({ props }: { props: any }) {
   const Docs = props.map((item: any) => {
     return item?.Documents;
   });
+
+  const DownloadFile = (path: string, Title: string) => {
+    const url = "http://localhost:9000/";
+    const pdfUrl = url + path;
+    const link = document.createElement("a");
+    link.href = pdfUrl;
+    link.target = "_blank";
+    link.download = Title; // specify the filename
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="p-4 md:p-6">
       <div className="w-full items-center flex justify-between p-4 md:p-6">
@@ -19,7 +32,12 @@ export function DocumentsTable({ props }: { props: any }) {
             const type = ext === "mp4" ? "Video" : "File";
             const Title = i.split("\\")[4];
             return (
-              <div className="flex items-center gap-2" key={i.split("")[0]}>
+              <Button
+                className="flex items-center justify-start gap-2 "
+                key={i.split("")[0]}
+                variant={"link"}
+                onClick={() => DownloadFile(i, Title)}
+              >
                 {type === "Video" ? (
                   <Video className="h-5 w-5 text-gray-500 dark:text-gray-400" />
                 ) : (
@@ -28,7 +46,7 @@ export function DocumentsTable({ props }: { props: any }) {
                 <span className="text-sm text-gray-500 dark:text-gray-400">
                   {Title}
                 </span>
-              </div>
+              </Button>
             );
           })
         )}

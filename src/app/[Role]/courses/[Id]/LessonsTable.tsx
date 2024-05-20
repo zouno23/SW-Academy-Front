@@ -11,12 +11,13 @@ import {
 } from "@/components/ui/table";
 import { Textarea } from "@/components/ui/textarea";
 import { FileEdit, Trash } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AddNewLesson } from "./AddLesson";
 
 export function LessonsTable({ props, role }: { props: any; role: string }) {
   const path = usePathname();
+  const router = useRouter();
   const CourseId = path.split("/")[3];
   const [IsEdit, setIsEdit] = useState("");
   const [Lessons, setLessons] = useState(props);
@@ -126,11 +127,9 @@ export function LessonsTable({ props, role }: { props: any; role: string }) {
                           const { error, response } = await deleteLesson(
                             item._id
                           );
-                          console.log(error, response);
-                          const gather = Lessons.filter(
-                            (lesson: any) => lesson._id !== item._id
-                          );
-                          setLessons(gather);
+                          if (response) {
+                            router.refresh();
+                          }
                         }}
                       >
                         <Trash className="h-4 w-4 " />

@@ -13,6 +13,7 @@ import { SocketContext } from "./CCMain";
 import { answerCall, onToggleAudio, onToggleVideo } from "./Utils";
 import { cn } from "@/lib/utils";
 import Messanger from "./MessagingSpace";
+import { useRouter } from "next/navigation";
 
 function Room({
   stream,
@@ -29,6 +30,7 @@ function Room({
   setPeers: Dispatch<SetStateAction<any[]>>;
   setNewCaller: Dispatch<SetStateAction<any>>;
 }) {
+  const router = useRouter();
   const [calls, setCalls] = useState<any[]>([]);
   const [callAccepted, setCallAccepted] = useState(false);
   const [streams, setstreams] = useState<MediaStream[]>([]);
@@ -85,7 +87,10 @@ function Room({
   }, [socket?.connected]);
 
   return (
-    <div key="1" className="flex flex-col md:flex-row h-screen w-full">
+    <div
+      key="1"
+      className="flex flex-col md:flex-row h-screen w-screen absolute"
+    >
       <div
         className={cn(
           `flex-1 grid grid-cols-${streams.length} gap-4 p-4 bg-gray-900`,
@@ -143,10 +148,15 @@ function Room({
             <CameraOff className="h-5 w-5" />
           )}
         </Button>
-        <Button className="text-white" size="icon" variant="ghost">
-          <Share className="w-6 h-6" />
-        </Button>
-        <Button className="text-white" size="icon" variant="ghost">
+
+        <Button
+          className="text-white"
+          size="icon"
+          variant="ghost"
+          onClick={() => {
+            router.back();
+          }}
+        >
           <Phone className="w-6 h-6" />
         </Button>
       </div>

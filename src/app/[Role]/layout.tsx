@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import SideBar from "./SideBar/SideBar";
 import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
-import { GetRole } from "../Actions/RoleCookieManagement";
-import { headers } from "next/headers";
-import { LeavingMeetingDetection } from "./livestream/LeavingMeetingDetection";
+import { LeavingMeetingDetection } from "../Hooks/LeavingMeetingDetection";
 
 export const metadata: Metadata = {
   title: "SW-Academy",

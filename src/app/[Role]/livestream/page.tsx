@@ -13,8 +13,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { MeetingsList } from "./MeetingsList";
 import Link from "next/link";
 import { JoinMeeting, StartMeeting } from "./EnteringButtons";
+import { GetRole } from "@/app/Actions/RoleCookieManagement";
+import { GetTeacherAgenda } from "@/app/Actions/DashboardActions";
+import { GetTeacherLessons } from "@/app/Actions/CoursesActions";
 
-export default function LiveStream() {
+export default async function LiveStream() {
+  const role = GetRole();
+  let events;
+  if (role === "Teacher") {
+    const { error1, response1 } = await GetTeacherAgenda();
+    if (error1) console.log(error1);
+    events = await response1?.Result;
+  }
+
+  const { error, response } = await GetTeacherLessons();
+  if (error?.status === 500) throw new Error("server error");
+  const Lessons = response?.Result;
+
   return (
     <main className="flex h-screen w-full items-center justify-center bg-gray-100 dark:bg-gray-950">
       <div className="mx-auto w-2/3  space-y-6 px-4 sm:px-0 flex flex-col items-center ">
@@ -29,11 +44,11 @@ export default function LiveStream() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-2 w-full">
           <MeetingsList />
           <div className="size-full">
-            <TeacherCalendar className={"w-full h-full"} />
+            <TeacherCalendar className={"w-full h-full"} events={events} />
           </div>
         </div>
         <div className="flex gap-8 ">
-          <StartMeeting />
+          <StartMeeting Lessons={Lessons} />
           <JoinMeeting />
         </div>
       </div>

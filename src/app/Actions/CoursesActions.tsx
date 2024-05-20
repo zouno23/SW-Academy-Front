@@ -155,3 +155,22 @@ export const DeleteCourse = async (CourseId: string) => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const GetTeacherLessons = async () => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.get<AxiosResponseType>(
+      "http://localhost:9000/lessons",
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

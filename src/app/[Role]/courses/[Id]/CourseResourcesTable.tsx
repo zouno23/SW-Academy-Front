@@ -12,16 +12,12 @@ export function CourseResourcesTable({ props }: { props: any }) {
         <TabsList>
           <TabsTrigger value="lessons">Lessons</TabsTrigger>
           <TabsTrigger value="Documents">Resources</TabsTrigger>
-          <TabsTrigger value="reviews">Reviews</TabsTrigger>
         </TabsList>
         <TabsContent value="lessons">
           <LessonsTable props={props?.Lessons} role={role || ""} />
         </TabsContent>
         <TabsContent value="Documents">
           <DocumentsTable props={props?.Lessons} />
-        </TabsContent>
-        <TabsContent value="reviews">
-          <ReviewsTable />
         </TabsContent>
       </Tabs>
     </div>
