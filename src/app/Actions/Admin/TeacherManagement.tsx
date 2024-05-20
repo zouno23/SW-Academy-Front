@@ -75,6 +75,7 @@ export const AddTeacher = async (formData:FormData)=>{
       } 
       // ,{headers: { Authorization: `Bearer ${jwt}` }}
       )
+      console.log(response)
       return {error:null , response:response.data}
     
     
