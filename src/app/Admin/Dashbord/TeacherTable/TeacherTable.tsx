@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductsTable from '../../ProductsList/StudentTable/ProductsTable'
+import ProductsTable from '../../ProductsList/TeacherTable/ProductsTable'
 import { teacher } from '../../ProductsList/TeacherTable/DataStructure';
 import { Getliste } from '@/app/Actions/Admin/TeacherManagement';
 
