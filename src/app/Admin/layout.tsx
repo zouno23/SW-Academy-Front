@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
+import { GetRole } from "../Actions/RoleCookieManagement";
 
 export const metadata: Metadata = {
   title: "SW-Academy-Admin",
@@ -12,6 +12,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const role = GetRole();
+
+  if (role === "Teacher" || role === "Student") {
+    redirect("/login");
+  }
   return (
     <section className="h-screen absolute w-screen overflow-hidden flex">
       {children}

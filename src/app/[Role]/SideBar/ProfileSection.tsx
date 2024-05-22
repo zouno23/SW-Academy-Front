@@ -36,7 +36,7 @@ export default async function ProfileSection() {
             Good Morning {role == "Teacher" ? "Mr. " : ""}
             {response?.Result.FullName?.split(" ").slice(0, 1)}
           </h4>
-          <h6 className=" text-sm font-medium text-gray-700/70 ">
+          <h6 className=" text-sm font-medium text-gray-700/70 text-pretty ">
             Continue your journey and achieve your goals
           </h6>
         </div>

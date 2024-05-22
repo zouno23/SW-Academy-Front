@@ -3,6 +3,7 @@ import SideBar from "./SideBar/SideBar";
 import { GetJWT } from "../Actions/JWTmanagement";
 import { redirect } from "next/navigation";
 import { LeavingMeetingDetection } from "../Hooks/LeavingMeetingDetection";
+import { GetRole } from "../Actions/RoleCookieManagement";
 
 export const metadata: Metadata = {
   title: "SW-Academy",
@@ -15,7 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const IsLoggedIn = GetJWT();
+  const role = GetRole();
   if (!IsLoggedIn) redirect("/login");
+  if (role == "Teacher" || role == "Student") {
+  } else {
+    redirect("/Admin");
+  }
 
   return (
     <section className="h-screen relative w-screen overflow-hidden flex">
