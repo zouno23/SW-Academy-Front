@@ -9,7 +9,13 @@ type UsersData = {
   students: number;
   admins: number;
 };
-function AdminPieChart({ UsersData }: { UsersData: UsersData }) {
+function AdminPieChart({
+  UsersData,
+  ChartSize,
+}: {
+  UsersData: UsersData;
+  ChartSize?: number;
+}) {
   const { theme, setTheme } = useTheme();
   const chartColor =
     theme === "dark" ? "rgb(243, 244, 246)" : "rgba(37,99,235)";
@@ -55,8 +61,8 @@ function AdminPieChart({ UsersData }: { UsersData: UsersData }) {
       <Doughnut
         data={doughnutData}
         options={doughnutOptions}
-        width={140}
-        height={140}
+        width={ChartSize || 140}
+        height={ChartSize || 140}
         updateMode="resize"
       />
     </div>

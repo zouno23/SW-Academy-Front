@@ -40,7 +40,7 @@ export default function RootLayout({
           className="border border-slate-100  max-md:hidden"
         />
         <ResizablePanel defaultSize={80} maxSize={85} minSize={75}>
-          <section className="bg-gray-100 w-full h-full relative overflow-auto overflow-x-hidden p-8 dark:bg-black z-0 ">
+          <section className="bg-gray-100 w-full h-full relative overflow-auto overflow-x-hidden p-8 dark:bg-black z-0">
             {children}
           </section>
         </ResizablePanel>

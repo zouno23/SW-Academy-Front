@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { LayoutDashboard, Notebook, Settings, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Paths = [
   {
@@ -32,6 +32,7 @@ const Paths = [
 function AdminNavButtons() {
   const pathname = usePathname();
   const [path, setPath] = useState(pathname.split("/")[2]);
+  useEffect(() => setPath(pathname.split("/")[2]), [pathname]);
   const NavButton = (bpath: string, name: string, icon: any) => {
     return (
       <Link href={"/Admin/" + bpath}>
