@@ -213,3 +213,65 @@ export const UpdateTeacher = async (TeacherId: string, data: any) => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const GetStudent = async (StudentId: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.get<AxiosResponseType>(
+      "http://localhost:9000/Admin/Student?StudentId=" + StudentId,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const GetStudentCourses = async (StudentId: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.get<AxiosResponseType>(
+      "http://localhost:9000/Admin/Student-Courses?StudentId=" + StudentId,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const GetStudentCourseCompletion = async (StudentId: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.get<AxiosResponseType>(
+      "http://localhost:9000/Admin/Student-Completed-Courses?StudentId=" +
+        StudentId,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const UpdateStudent = async (StudentId: string, data: any) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.put<AxiosResponseType>(
+      "http://localhost:9000/Admin/Student?StudentId=" + StudentId,
+      data,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

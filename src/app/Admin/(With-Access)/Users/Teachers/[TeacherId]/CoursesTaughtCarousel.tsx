@@ -21,7 +21,10 @@ function CoursesTaught({ Courses }: { Courses: courses }) {
     <div className="space-y-4">
       <span className="flex justify-between items-center">
         <h3 className="text-2xl font-bold ">Courses Taught</h3>
-        <Button variant={"outline"}> View All</Button>
+        <Button variant={"outline"} disabled={Courses.length === 0}>
+          {" "}
+          View All
+        </Button>
       </span>
       <Carousel className=" relative ">
         {Courses?.length > 0 ? (

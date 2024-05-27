@@ -13,6 +13,7 @@ import { GetAbbr } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import NewStudent from "./AddStudent";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Students = {
   FullName: string;
@@ -26,6 +27,7 @@ type Students = {
 function StudentsTable({ Students }: { Students: Students }) {
   const [Display, setDisplay] = useState(Students);
   const [query, setQuery] = useState("");
+  const router = useRouter();
   useEffect(() => {
     if (query == "") {
       setDisplay(Students);
@@ -66,7 +68,11 @@ function StudentsTable({ Students }: { Students: Students }) {
         </TableHeader>
         <TableBody>
           {Display.map((student) => (
-            <TableRow>
+            <TableRow
+              onClick={() =>
+                router.push("/Admin/Users/Students/" + student._id)
+              }
+            >
               <TableCell className="flex gap-8 items-center  justify-start text-pretty px-2 ">
                 <Avatar className="size-20 bg-slate-100 border border-slate-100">
                   {student.Picture ? (

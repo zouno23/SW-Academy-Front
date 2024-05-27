@@ -11,17 +11,22 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
 type courses = {
-  Title: string;
-  Description: string;
-  _id: string;
-  Buyers: number;
+  Course: {
+    Title: string;
+    Description: string;
+    _id: string;
+    Progress: number;
+  };
 }[];
 function CoursesBought({ Courses }: { Courses: courses }) {
   return (
     <div className="space-y-4">
       <span className="flex justify-between items-center">
         <h3 className="text-2xl font-bold ">Courses Taught</h3>
-        <Button variant={"outline"}> View All</Button>
+        <Button variant={"outline"} disabled={Courses.length === 0}>
+          {" "}
+          View All
+        </Button>
       </span>
       <Carousel className=" relative ">
         {Courses?.length > 0 ? (
@@ -38,15 +43,15 @@ function CoursesBought({ Courses }: { Courses: courses }) {
                 <Card>
                   <CardContent className="p-4">
                     <h4 className="text-lg font-semibold mb-2">
-                      {course.Title}
+                      {course.Course.Title}
                     </h4>
                     <p className="text-gray-500 dark:text-gray-400 mb-4">
-                      {course.Description}
+                      {course.Course.Description}
                     </p>
                     <div className="flex items-center gap-2">
                       <UserIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {course.Buyers} students
+                        {course.Course.Progress}%
                       </span>
                     </div>
                   </CardContent>
