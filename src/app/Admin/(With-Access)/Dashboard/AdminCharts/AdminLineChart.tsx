@@ -90,7 +90,7 @@ function AdminLineChart({ SoldCourses }: { SoldCourses: SoldCourses }) {
     },
   };
   return (
-    <div className="  bg-white rounded-2xl p-4 dark:bg-slate-900 border col-span-2 ">
+    <div className="  bg-white rounded-2xl p-4 dark:bg-slate-900 border col-span-2 shadow-md ">
       <div className="w-fit grid place-items-center">
         <h2 className="font-bold text-xl">Course Sellings</h2>
         <h4 className=" font-normal text-xs text-black/70 dark:text-white/70">

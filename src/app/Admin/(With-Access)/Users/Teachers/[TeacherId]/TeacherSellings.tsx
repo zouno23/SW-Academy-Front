@@ -95,7 +95,7 @@ function TeacherSellings({ Data }: any) {
   return (
     <div
       className={cn(
-        " bg-white flex flex-col rounded-2xl p-4 justify-between dark:bg-slate-900 "
+        " bg-white flex flex-col rounded-2xl p-4 justify-between dark:bg-slate-900 shadow-md "
       )}
     >
       <div className="flex justify-between">

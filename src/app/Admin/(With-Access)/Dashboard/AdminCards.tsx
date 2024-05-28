@@ -46,7 +46,7 @@ async function AdminCards() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
       {Cards.map((card) => (
-        <Card className="space-2 rounded-2xl" key={card.number}>
+        <Card className="space-2 rounded-2xl shadow-md" key={card.number}>
           <CardHeader className="flex flex-row items-center justify-center gap-2 text-center">
             {card.icon}
             <CardTitle>{card.name}</CardTitle>

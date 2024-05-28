@@ -22,8 +22,8 @@ function Login() {
   const formRef = useRef<HTMLFormElement | null>(null);
   const router = useRouter();
   return (
-    <section className="w-full h-full grid place-items-center">
-      <Card className="w-full max-w-md space-y-4 p-6">
+    <section className="w-full h-full grid place-items-center ">
+      <Card className="w-full max-w-md space-y-4 p-6 shadow-md">
         <div className="flex justify-center">
           <Image src={Logo} alt="SW Academy" className="h-10 w-full" />
         </div>

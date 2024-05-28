@@ -8,7 +8,7 @@ async function StudentsPage() {
   }
   const Students = StudentsApiResponse.response.Result;
   return (
-    <main className="bg-white  p-2 rounded-2xl h-full overflow-auto relative">
+    <main className="bg-white  p-2 rounded-2xl h-full overflow-auto relative shadow-md">
       <StudentsTable Students={Students} />
     </main>
   );

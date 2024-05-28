@@ -1,3 +1,4 @@
+"use client";
 import { UserIcon } from "lucide-react";
 import {
   Carousel,
@@ -9,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { Dispatch, SetStateAction } from "react";
 
 type courses = {
   Title: string;
@@ -16,12 +18,24 @@ type courses = {
   _id: string;
   Buyers: number;
 }[];
-function CoursesTaught({ Courses }: { Courses: courses }) {
+function CoursesTaught({
+  Courses,
+  IsCourses,
+  setIsCourses,
+}: {
+  Courses: courses;
+  IsCourses: boolean;
+  setIsCourses: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <div className="space-y-4">
       <span className="flex justify-between items-center">
         <h3 className="text-2xl font-bold ">Courses Taught</h3>
-        <Button variant={"outline"} disabled={Courses.length === 0}>
+        <Button
+          variant={"outline"}
+          disabled={Courses.length === 0}
+          onClick={() => setIsCourses(true)}
+        >
           {" "}
           View All
         </Button>
@@ -38,7 +52,7 @@ function CoursesTaught({ Courses }: { Courses: courses }) {
                   Courses.length === 2 && "md:basis-1/2 "
                 )}
               >
-                <Card>
+                <Card className="">
                   <CardContent className="p-4">
                     <h4 className="text-lg font-semibold mb-2">
                       {course.Title}

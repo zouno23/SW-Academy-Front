@@ -31,7 +31,7 @@ export default function RootLayout({
           defaultSize={20}
           maxSize={25}
           minSize={15}
-          className=" max-md:hidden"
+          className=" max-md:hidden shadow-md"
         >
           <AdminSideBar />
         </ResizablePanel>

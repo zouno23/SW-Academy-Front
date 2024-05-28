@@ -9,6 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import AddProduct from "./AddProduct";
+import { Progress } from "@/components/ui/progress";
 
 type courses = {
   Course: {
@@ -22,11 +24,13 @@ function CoursesBought({ Courses }: { Courses: courses }) {
   return (
     <div className="space-y-4">
       <span className="flex justify-between items-center">
-        <h3 className="text-2xl font-bold ">Courses Taught</h3>
-        <Button variant={"outline"} disabled={Courses.length === 0}>
-          {" "}
-          View All
-        </Button>
+        <h3 className="text-2xl font-bold ">Courses Bought</h3>
+        <span className="space-x-2">
+          <Button variant={"outline"} disabled={Courses.length === 0}>
+            View All
+          </Button>
+          <AddProduct />
+        </span>
       </span>
       <Carousel className=" relative ">
         {Courses?.length > 0 ? (
@@ -49,9 +53,9 @@ function CoursesBought({ Courses }: { Courses: courses }) {
                       {course.Course.Description}
                     </p>
                     <div className="flex items-center gap-2">
-                      <UserIcon className="w-4 h-4 text-gray-500 dark:text-gray-400" />
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {course.Course.Progress}%
+                      <span className="text-sm text-gray-500 dark:text-gray-400 flex w-full gap-2">
+                        <Progress value={course.Course.Progress || 0} />
+                        {course.Course.Progress || 0}%
                       </span>
                     </div>
                   </CardContent>

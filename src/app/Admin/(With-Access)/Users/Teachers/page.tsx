@@ -15,7 +15,7 @@ async function TeachersPage({
   const Teachers = TeachersApiResponse.response?.Result;
 
   return (
-    <main className="bg-white rounded-2xl h-full overflow-auto relative">
+    <main className="bg-white rounded-2xl h-full overflow-auto relative shadow-md">
       <TeachersTable Teachers={Teachers} />
     </main>
   );

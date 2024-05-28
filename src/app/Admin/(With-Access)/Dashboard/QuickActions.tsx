@@ -9,7 +9,7 @@ import {
 
 function QuickActions() {
   return (
-    <Card className="bg-white rounded-2xl p-4 dark:slate-900 border col-span-1 space-y-4 ">
+    <Card className="bg-white rounded-2xl p-4 dark:slate-900 border col-span-1 space-y-4 shadow-md ">
       <CardHeader>
         <CardTitle>Quick Actions</CardTitle>
         <p className="text-md text-gray-500 dark:text-gray-400">

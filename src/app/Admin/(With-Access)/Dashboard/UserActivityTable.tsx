@@ -43,7 +43,7 @@ const MostActiveTeachers = async () => {
     throw new Error(TeacherActivityApiResult.error.message);
   const mostActiveTeachers = TeacherActivityApiResult.response?.Result || [];
   return (
-    <Card>
+    <Card className="shadow-md">
       <CardHeader>
         <CardTitle> Most Active Teacher </CardTitle>
         <p className="text-md text-gray-500 dark:text-gray-400">
@@ -93,7 +93,7 @@ const MostActiveStudents = async () => {
     throw new Error(StudentActivityApiResult.error.message);
   const mostActiveStudents = StudentActivityApiResult.response?.Result || [];
   return (
-    <Card>
+    <Card className="shadow-md">
       <CardHeader>
         <CardTitle> Most Active Students </CardTitle>
         <p className="text-md text-gray-500 dark:text-gray-400">

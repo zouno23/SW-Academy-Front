@@ -1,12 +1,11 @@
-import CoursesBought from "./CoursesBought";
 import StudentDetails from "./StudentDetails";
-import CourseCompletions from "./CourseCompletions";
 import {
   GetStudent,
   GetStudentCourseCompletion,
   GetStudentCourses,
 } from "@/app/Actions/Admin/AdminUsersActions";
 import { redirect } from "next/navigation";
+import StudentWorkSpace from "./StudentWorkspace";
 async function Student({ params }: { params: { slug: string } | any }) {
   const StudentGetterApi = await GetStudent(params.StudentId);
   if (StudentGetterApi.error) {
@@ -23,10 +22,10 @@ async function Student({ params }: { params: { slug: string } | any }) {
   return (
     <main className=" overflow-y-auto grid grid-cols-2 md:grid-cols-6 gap-8 h-full ">
       <StudentDetails student={StudentGetterApi.response?.Result} />
-      <div className="grid gap-8 col-span-2 md:col-span-4 h-full py-4 grid-cols-1 px-10 ">
-        <CoursesBought Courses={CoursesGetter.response?.Result} />
-        <CourseCompletions Data={CompletionGetter.response?.Result} />
-      </div>
+      <StudentWorkSpace
+        CompletionGetter={CompletionGetter}
+        CoursesGetter={CoursesGetter}
+      />
     </main>
   );
 }

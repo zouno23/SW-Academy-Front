@@ -25,7 +25,7 @@ export async function NewestStudents() {
   const newestStudents = NewestStudentsApiResult.response?.Result || [];
   return (
     <section>
-      <Card className="h-full">
+      <Card className="h-full shadow-md">
         <CardHeader className="grid grid-cols-3">
           <span className=" col-span-2 text-pretty space-y-2">
             <CardTitle> Most Recent Student enrollement </CardTitle>
@@ -80,7 +80,7 @@ export async function NewestTeachers() {
 
   return (
     <section className="">
-      <Card className="h-full">
+      <Card className="h-full shadow-md">
         <CardHeader className="grid grid-cols-3">
           <span className=" col-span-2 text-pretty space-y-2">
             <CardTitle> Most Recent Teacher sign up </CardTitle>
@@ -134,7 +134,7 @@ export async function NewestAdmins() {
   const NewestAdmins = NewestAdminsApiResults.response?.Result || [];
   return (
     <section>
-      <Card className="h-full">
+      <Card className="h-full shadow-md">
         <CardHeader className="grid grid-cols-3">
           <span className=" col-span-2 text-pretty space-y-2">
             <CardTitle> Latest Admins </CardTitle>

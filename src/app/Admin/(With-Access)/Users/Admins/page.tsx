@@ -13,7 +13,7 @@ async function AdminsPage() {
   const Admins = AdminsApiResponse.response?.Result;
   const role = GetRole();
   return (
-    <main className="bg-white  p-2 rounded-2xl h-full overflow-auto relative">
+    <main className="bg-white  p-2 rounded-2xl h-full overflow-auto relative shadow-md">
       <AdminsTable Admins={Admins} role={role as string} />
     </main>
   );

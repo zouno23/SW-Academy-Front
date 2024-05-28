@@ -8,7 +8,7 @@ async function RecentCourses() {
   }
   const RecentCourses = RecentCoursesApiResult.response?.Result;
   return (
-    <Card className="bg-white rounded-2xl p-4 dark:slate-900 border col-span-1 space-y-4">
+    <Card className="bg-white rounded-2xl p-4 dark:slate-900 border col-span-1 space-y-4 shadow-md">
       <CardHeader>
         <CardTitle>Recently Added Courses</CardTitle>
       </CardHeader>

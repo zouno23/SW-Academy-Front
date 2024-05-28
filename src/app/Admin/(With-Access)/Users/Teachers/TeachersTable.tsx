@@ -44,7 +44,7 @@ function TeachersTable({ Teachers }: { Teachers: Teachers }) {
   }, [query]);
   return (
     <>
-      <div className="flex justify-between w-full  p-2 items-center sticky top-0 z-10 bg-white ">
+      <div className="flex justify-between w-full  p-2 items-center sticky top-0 z-10 bg-white shadow-md ">
         <h2 className="text-2xl p-4 font-bold">List of Teachers</h2>
         <div className="flex gap-4">
           <search>
