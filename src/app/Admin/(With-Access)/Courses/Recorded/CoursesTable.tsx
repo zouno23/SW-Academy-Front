@@ -41,6 +41,7 @@ function CoursesTable({ Courses }: { Courses: Courses }) {
         )
       );
     }
+    console.log(Display);
   }, [query]);
   return (
     <>

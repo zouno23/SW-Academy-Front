@@ -25,7 +25,7 @@ function StudentDetails({ student }: { student: student }) {
   const [EditMode, setEditMode] = useState(false);
   const router = useRouter();
   return (
-    <div className="bg-white dark:bg-gray-950 rounded-lg shadow-md col-span-2">
+    <div className="bg-white dark:bg-gray-950 rounded-lg shadow-md col-span-2 max-h-screen">
       {!EditMode ? (
         <>
           <div className="h-32 bg-gradient-to-r from-[#637bf1d5] to-[#615cf6] rounded-t-lg relative">

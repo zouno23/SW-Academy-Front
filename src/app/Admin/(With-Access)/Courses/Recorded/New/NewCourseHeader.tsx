@@ -40,7 +40,7 @@ function NewCourseHeader({
   };
   const oldparams = searchParamsKeep("", searchParams);
   return (
-    <div className="flex flex-col  w-full  justify-between items-center bg-blue-600 border rounded-xl divide-y-2 dark:bg-slate-900 ">
+    <div className="flex flex-col  w-full  justify-between items-center bg-blue-600 border rounded-xl divide-y-2 dark:bg-slate-900 shadow-md ">
       <div className="flex w-full  justify-between items-center py-8 px-8">
         <div className="w-1/2 flex justify-center flex-col gap-2 text-white">
           <h1 className="text-3xl font-bold">Add New Course</h1>

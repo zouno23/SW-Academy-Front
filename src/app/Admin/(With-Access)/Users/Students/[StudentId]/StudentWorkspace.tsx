@@ -27,7 +27,10 @@ export default function StudentWorkSpace({
     >
       {!IsCourses ? (
         <>
-          <CoursesBought Courses={CoursesGetter.response?.Result} />
+          <CoursesBought
+            Courses={CoursesGetter.response?.Result}
+            setIsCourses={setIsCourses}
+          />
           <CourseCompletions Data={CompletionGetter.response?.Result} />
         </>
       ) : (

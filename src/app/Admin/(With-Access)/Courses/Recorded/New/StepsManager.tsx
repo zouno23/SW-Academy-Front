@@ -26,7 +26,7 @@ function CreateCourseForm({ jwt }: { jwt: string }) {
   useEffect(() => {
     if (save) {
       buttonRef.current?.click();
-      router.replace("/Teacher/courses");
+      router.replace("/Admin/Courses/Recorded");
     }
   }, [save]);
 
@@ -35,12 +35,13 @@ function CreateCourseForm({ jwt }: { jwt: string }) {
       const input = {
         Title: BasicInfos?.Title,
         Description: BasicInfos?.Description,
+        Teacher: BasicInfos?.Teacher,
         RequiredLevel: BasicInfos?.Level,
         Field: BasicInfos?.Field,
         Lessons: Lessons,
       };
       const response: AxiosResponseType = await axios.post(
-        "http://localhost:9000/course",
+        "http://localhost:9000/Admin/Course",
         input,
         {
           headers: {
@@ -53,7 +54,7 @@ function CreateCourseForm({ jwt }: { jwt: string }) {
         const formData = new FormData();
         formData.append("file", Medias?.Send || "");
         const img: AxiosResponseType = await axios.post(
-          "http://localhost:9000/courseCover",
+          "http://localhost:9000/Admin/CourseCover",
           formData,
           {
             headers: {
@@ -70,11 +71,12 @@ function CreateCourseForm({ jwt }: { jwt: string }) {
             const formData = new FormData();
             formData.append("file", a);
             const result: AxiosResponseType = await axios.post(
-              "http://localhost:9000/upload",
+              "http://localhost:9000/Admin/Upload",
               formData,
               {
                 headers: {
                   Authorization: `Bearer ${jwt}`,
+                  Teacher: BasicInfos?.Teacher,
                   CourseTitle: BasicInfos?.Title,
                   LessonTitle: item.Title,
                 },

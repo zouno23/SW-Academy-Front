@@ -1,3 +1,4 @@
+import { GetAllTeachers } from "@/app/Actions/Admin/AdminUsersActions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,6 +18,7 @@ import React, {
   SetStateAction,
   useEffect,
   useRef,
+  useState,
 } from "react";
 
 function BasicInfo({
@@ -29,11 +31,19 @@ function BasicInfo({
   const SubmitRef = useRef<HTMLButtonElement>(null);
 
   const FormRef = useRef<HTMLFormElement>(null);
+  const [Teachers, setTeachers] = useState<any[]>([]);
 
   useEffect(() => {
     SubmitRef.current?.click();
   }, [BasicInfos]);
-
+  useEffect(() => {
+    getTeachers();
+  }, []);
+  const getTeachers = async () => {
+    const Getter = await GetAllTeachers();
+    if (Getter.error) return;
+    setTeachers(Getter.response.Result);
+  };
   const updateInput = (FormData: FormData) => {
     if (FormData) {
       setBasicInfos({
@@ -41,13 +51,14 @@ function BasicInfo({
         Description: (FormData.get("description") as string) || "",
         Field: (FormData.get("field") as string) || "",
         Level: (FormData.get("level") as string) || "",
+        Teacher: FormData.get("Teacher") || BasicInfos?.Teacher || "",
       });
     }
   };
 
   return (
     <>
-      <div className=" bg-white border w-full h-full  flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8 pt-4">
+      <div className=" bg-white border w-full h-full  flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8 pt-4 shadow-md">
         <h2 className="p-4 text-xl font-semibold">Basic Information</h2>
         <form
           action={(FormData) => updateInput(FormData)}
@@ -65,6 +76,32 @@ function BasicInfo({
             <p className="text-xs text-gray-500 pl-2 text-muted-foreground">
               Write a 60 character maximum course title.
             </p>
+          </span>
+          <span className=" space-y-2">
+            <label htmlFor="Teacher">Teacher</label>
+            <Select
+              name="Teacher"
+              defaultValue={
+                Teachers.filter((x) => x._id == BasicInfos?.Teacher)[0]?._id
+              }
+            >
+              <SelectTrigger className="">
+                <SelectValue
+                  placeholder={
+                    Teachers.filter((x) => x._id == BasicInfos?.Teacher)[0]
+                      ?.FullName || "Select Teacher"
+                  }
+                  id="Teacher"
+                />
+              </SelectTrigger>
+              <SelectContent>
+                {Teachers.map((teacher, index) => (
+                  <SelectItem value={teacher._id}>
+                    {teacher.FullName}{" "}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </span>
           <span className=" space-y-2">
             <label htmlFor="field">Course Field</label>
@@ -102,7 +139,6 @@ function BasicInfo({
                 <SelectItem value="Advanced">Advanced</SelectItem>
               </SelectContent>
             </Select>
-            <Select />
           </span>
           <span className=" space-y-2">
             <label htmlFor="description">Course Description</label>

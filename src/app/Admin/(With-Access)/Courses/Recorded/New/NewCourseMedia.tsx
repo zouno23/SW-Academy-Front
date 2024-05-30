@@ -60,7 +60,7 @@ function Media({
   };
   return (
     <>
-      <div className=" bg-white border w-full h-full  flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8 pt-4">
+      <div className=" bg-white border w-full h-full  flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8 pt-4 shadow-md">
         <h2 className="p-4 text-xl font-semibold">Course Media</h2>
         <form
           className="py-4 px-32 flex flex-col gap-4 h-full font-medium justify-center overflow-hidden items-center"

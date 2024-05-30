@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import AddProduct from "./AddProduct";
 import { Progress } from "@/components/ui/progress";
+import { Dispatch, SetStateAction } from "react";
 
 type courses = {
   Course: {
@@ -20,13 +21,23 @@ type courses = {
     Progress: number;
   };
 }[];
-function CoursesBought({ Courses }: { Courses: courses }) {
+function CoursesBought({
+  Courses,
+  setIsCourses,
+}: {
+  Courses: courses;
+  setIsCourses: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <div className="space-y-4">
       <span className="flex justify-between items-center">
         <h3 className="text-2xl font-bold ">Courses Bought</h3>
         <span className="space-x-2">
-          <Button variant={"outline"} disabled={Courses.length === 0}>
+          <Button
+            variant={"outline"}
+            disabled={Courses.length === 0}
+            onClick={() => setIsCourses(true)}
+          >
             View All
           </Button>
           <AddProduct />

@@ -3,6 +3,7 @@ export type NewCourseBasicInfoForm ={
     Field :string,
     Level :string,
     Description : string
+    Teacher?:any
 } | null
 
 export type CourseCoverMedia =   {Display?:string |null,Send?:File|null}| null
