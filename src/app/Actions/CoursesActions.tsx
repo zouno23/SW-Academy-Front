@@ -70,7 +70,7 @@ export const updateLesson = async (
     const jwt = GetJWT();
     if (!jwt) throw new Error("No JWT available");
     const response: AxiosResponseType = await axios.put<AxiosResponseType>(
-      `http://localhost:9000/Lesson?Id=` + id,
+      `http://localhost:9000/lesson?Id=` + id,
       Data,
       { headers: { Authorization: `Bearer ${jwt}` } }
     );

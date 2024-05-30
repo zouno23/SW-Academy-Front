@@ -73,7 +73,9 @@ function CoursesTable({ Courses }: { Courses: Courses }) {
         <TableBody>
           {Display?.map((Course) => (
             <TableRow
-              onClick={() => router.push("/Admin/Users/Courses/" + Course._id)}
+              onClick={() =>
+                router.push("/Admin/Courses/Recorded/" + Course._id)
+              }
             >
               <TableCell className="flex gap-8 items-center  justify-start text-pretty px-2 ">
                 <Avatar className="size-20 bg-slate-100 border border-slate-100 rounded-lg">
