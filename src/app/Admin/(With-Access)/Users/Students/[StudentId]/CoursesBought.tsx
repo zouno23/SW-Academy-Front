@@ -51,22 +51,22 @@ function CoursesBought({
                 key={index}
                 className={cn(
                   "pl-1 basis-1/2 md:basis-1/3",
-                  Courses.length === 1 && "md:basis-1 basis-1 ",
+                  Courses.length === 1 && "md:basis-full ",
                   Courses.length === 2 && "md:basis-1/2 "
                 )}
               >
                 <Card>
                   <CardContent className="p-4">
                     <h4 className="text-lg font-semibold mb-2">
-                      {course.Course.Title}
+                      {course.Course?.Title}
                     </h4>
                     <p className="text-gray-500 dark:text-gray-400 mb-4">
-                      {course.Course.Description}
+                      {course.Course?.Description}
                     </p>
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-gray-500 dark:text-gray-400 flex w-full gap-2">
-                        <Progress value={course.Course.Progress || 0} />
-                        {course.Course.Progress || 0}%
+                        <Progress value={course.Course?.Progress || 0} />
+                        {course.Course?.Progress || 0}%
                       </span>
                     </div>
                   </CardContent>

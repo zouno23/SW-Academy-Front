@@ -13,6 +13,7 @@ async function AdminCharts() {
   const SoldCoursesApiResult = await GetAllSoldCoursesPerMonth();
   if (SoldCoursesApiResult.error?.status === 500)
     throw new Error(SoldCoursesApiResult.error.message);
+  console.log(SoldCoursesApiResult);
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       <AdminPieChart UsersData={UsersApiResult.response.Result} />

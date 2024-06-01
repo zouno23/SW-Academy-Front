@@ -24,13 +24,18 @@ function AdminLineChart({ SoldCourses }: { SoldCourses: SoldCourses }) {
     "Dec",
   ];
   if (SoldCourses) {
-    const thisYearSellings = SoldCourses[moment(Date.now()).year()];
-    const lastYearSellings = SoldCourses[moment(Date.now()).year() - 1];
+    const thisYearSellings = SoldCourses[moment(Date.now()).year()] || [];
+    const lastYearSellings = SoldCourses[moment(Date.now()).year() - 1] || [];
+    console.log(thisYearSellings, "test ", lastYearSellings);
     ThisYear.map((index, i) => {
-      ThisYear[i] = thisYearSellings[i + 1 + ""] || 0;
+      if (thisYearSellings[i + 1 + ""])
+        ThisYear[i] = thisYearSellings[i + 1 + ""];
+      else ThisYear[i] = 0;
     });
     LastYear.map((index, i) => {
-      LastYear[i] = lastYearSellings[i + 1 + ""] || 0;
+      if (lastYearSellings[i + 1 + ""])
+        LastYear[i] = lastYearSellings[i + 1 + ""];
+      else LastYear[i] = 0;
     });
   }
   const data = {

@@ -22,6 +22,7 @@ function TeacherSellings({ Data }: any) {
   const years = ["2024", "2023", "2022", "2021"];
   const [year, setYear] = useState("2024");
   const Courses = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  console.log(Data);
   if (Data) {
     const YearData = Data[year];
     if (YearData) {

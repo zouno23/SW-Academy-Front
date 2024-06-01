@@ -48,7 +48,7 @@ function CoursesTaught({
                 key={index}
                 className={cn(
                   "pl-1 basis-1/2 md:basis-1/3",
-                  Courses.length === 1 && "md:basis-1 basis-1 ",
+                  Courses.length === 1 && "md:basis-full ",
                   Courses.length === 2 && "md:basis-1/2 "
                 )}
               >

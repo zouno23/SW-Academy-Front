@@ -51,9 +51,9 @@ function Login() {
                 SetToLocalStorage(response.Result);
                 router.push("/Admin/Dashboard");
                 toast({
-                  variant: "default",
+                  variant: "verified",
                   description: "Login Successful",
-                  icon: "success",
+                  icon: "verified",
                 });
               }
             }}
