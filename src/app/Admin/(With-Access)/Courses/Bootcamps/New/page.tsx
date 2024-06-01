@@ -14,7 +14,10 @@ import {
 import { useEffect, useState } from "react";
 import { GetAllTeachers } from "@/app/Actions/Admin/AdminUsersActions";
 import { useRouter } from "next/navigation";
-import { AdminAddBootCamp } from "@/app/Actions/Admin/AdminCoursesActions";
+import {
+  AdminAddBootCamp,
+  AdminUploadBootcampCover,
+} from "@/app/Actions/Admin/AdminCoursesActions";
 
 function NewBootcamp() {
   const [Courses, setCourses] = useState<number[]>([]);
@@ -32,6 +35,7 @@ function NewBootcamp() {
   useEffect(() => {
     getTeachers();
   }, []);
+
   return (
     <form
       action={async (FormData) => {
@@ -65,6 +69,8 @@ function NewBootcamp() {
         };
         const setter = await AdminAddBootCamp(postData);
         if (setter.error) throw new Error(setter.error.message);
+        await AdminUploadBootcampCover(FormData, setter.response.Result);
+        router.refresh();
         router.back();
       }}
       className="bg-white  rounded-2xl h-full overflow-auto relative shadow-md "

@@ -70,11 +70,12 @@ function BootcampssTable({ Bootcamps }: { Bootcamps: Bootcamps }) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Display?.map((Bootcamp) => (
+          {Display?.map((Bootcamp, index) => (
             <TableRow
               onClick={() =>
                 router.push("/Admin/Bootcamps/Recorded/" + Bootcamp._id)
               }
+              key={index}
             >
               <TableCell className="flex gap-8 items-center  justify-start text-pretty px-2 ">
                 <Avatar className="size-20 bg-slate-100 border border-slate-100 rounded-lg">

@@ -33,9 +33,9 @@ function AdminNavButtons() {
   const pathname = usePathname();
   const [path, setPath] = useState(pathname.split("/")[2]);
   useEffect(() => setPath(pathname.split("/")[2]), [pathname]);
-  const NavButton = (bpath: string, name: string, icon: any) => {
+  const NavButton = (bpath: string, name: string, icon: any, index: number) => {
     return (
-      <Link href={"/Admin/" + bpath}>
+      <Link href={"/Admin/" + bpath} key={index}>
         <Button
           className={cn(
             "flex w-full gap-3 justify-start p-2 bg-white text-gray-400 hover:bg-blue-600/65 hover:text-white dark:bg-transparent dark:text-gray-400 dark:hover:bg-blue-600/65 dark:hover:text-white",
@@ -51,7 +51,7 @@ function AdminNavButtons() {
   };
   return (
     <div className="flex flex-col  gap-4 items-start *:w-full  *:justify-start self-start">
-      {Paths.map((b) => NavButton(b.path, b.name, b.icon))}
+      {Paths.map((b, index) => NavButton(b.path, b.name, b.icon, index))}
     </div>
   );
 }

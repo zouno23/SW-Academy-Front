@@ -188,3 +188,31 @@ export const AdminAddBootCamp = async (data: any) => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const AdminUploadBootcampCover = async (
+  data: FormData,
+  Bootcamp: any
+) => {
+  try {
+    const Cover = data.get("Cover");
+    console.log(Bootcamp, Cover);
+    const jwt = GetJWT();
+    const formData = new FormData();
+    formData.append("file", Cover || "");
+    const img: AxiosResponseType = await axios.post(
+      "http://localhost:9000/Admin/BootcampCover?BootcampId=" +
+        Bootcamp._id +
+        "&BootcampTitle=" +
+        Bootcamp.Title,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};

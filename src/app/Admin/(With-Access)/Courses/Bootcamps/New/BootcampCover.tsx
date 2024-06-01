@@ -32,7 +32,6 @@ function BootcampCover() {
         Select the BootCamp Cover Picture
       </label>
       <Input
-        required
         type="file"
         name="Cover"
         accept=".png, .jpg, .jpeg"
