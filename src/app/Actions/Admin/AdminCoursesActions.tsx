@@ -216,3 +216,18 @@ export const AdminUploadBootcampCover = async (
     console.log(e);
   }
 };
+
+export const AdminGetBootCamp = async (Id: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.get<AxiosResponseType>(
+      `http://localhost:9000/Admin/Bootcamp?BootcampId=` + Id,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

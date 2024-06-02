@@ -38,7 +38,7 @@ async function BootcampsList() {
           </TableHeader>
           <TableBody>
             {Bootcamps?.map((camp: any) => (
-              <TableRow className="text-pretty ">
+              <TableRow className="text-pretty">
                 <TableCell className="flex gap-2 items-center text-lg font-semibold">
                   <Avatar className="size-16 text-sm font-normal">
                     <AvatarFallback className=" rounded-lg">

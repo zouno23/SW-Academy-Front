@@ -15,15 +15,17 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import moment from "moment";
 
 type Bootcamps = {
   Title: string;
   _id: string;
   Description: string;
-  TimeRange: number;
+  StartingDate: Date;
+  EndingDate: Date;
   Rating: number;
   Cover: string;
-  Enrollements: number;
+  Students: string[];
 }[];
 function BootcampssTable({ Bootcamps }: { Bootcamps: Bootcamps }) {
   const [Display, setDisplay] = useState(Bootcamps);
@@ -73,7 +75,7 @@ function BootcampssTable({ Bootcamps }: { Bootcamps: Bootcamps }) {
           {Display?.map((Bootcamp, index) => (
             <TableRow
               onClick={() =>
-                router.push("/Admin/Bootcamps/Recorded/" + Bootcamp._id)
+                router.push("/Admin/Courses/Bootcamps/" + Bootcamp._id)
               }
               key={index}
             >
@@ -96,13 +98,20 @@ function BootcampssTable({ Bootcamps }: { Bootcamps: Bootcamps }) {
                 </span>
               </TableCell>
               <TableCell className="text-center">
-                {Bootcamp.Enrollements}
+                {Bootcamp.Students.length || 0}
               </TableCell>
               <TableCell className="text-center">
                 {Bootcamp.Rating || 0}
               </TableCell>
               <TableCell className="text-center">
-                {Bootcamp.TimeRange}
+                {moment
+                  .duration(
+                    moment(Bootcamp.EndingDate).diff(
+                      moment(Bootcamp.StartingDate)
+                    )
+                  )
+                  .asDays()}{" "}
+                Days
               </TableCell>
             </TableRow>
           ))}

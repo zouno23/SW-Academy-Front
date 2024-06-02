@@ -32,7 +32,10 @@ export function DatePicker({
       setTimeRange({ ...TimeRange, StartingDate: date });
     }
   }, [date]);
-
+  let min = new Date();
+  if (TimeRange.StartingDate && change === 1) {
+    min = TimeRange.StartingDate;
+  }
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -56,6 +59,7 @@ export function DatePicker({
           mode="single"
           selected={date}
           onSelect={setDate}
+          disabled={(date) => date < new Date() || date <= min}
           initialFocus
         />
       </PopoverContent>
