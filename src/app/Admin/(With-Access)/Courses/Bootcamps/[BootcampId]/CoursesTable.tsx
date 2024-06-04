@@ -50,9 +50,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
           <TableHeader>
             <TableRow>
               <TableHead>Lesson</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead>Streamings</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead className="text-center">Description</TableHead>
+              <TableHead className="text-center">Streamings</TableHead>
+              <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -82,7 +82,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
                         }}
                       />
                     </TableCell>
-                    <TableCell>{Lesson?.Streams?.length}</TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Streams?.length}
+                    </TableCell>
                     <TableCell>
                       <Button
                         variant="ghost"
@@ -105,9 +107,13 @@ function CourseTable({ Course }: { Course: CourseType }) {
                 ) : (
                   <TableRow>
                     <TableCell>{Lesson?.Title}</TableCell>
-                    <TableCell>{Lesson?.Description}</TableCell>
-                    <TableCell>{Lesson?.Streams?.length}</TableCell>
-                    <TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Description}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Streams?.length}
+                    </TableCell>
+                    <TableCell className="text-center">
                       <Button
                         variant="ghost"
                         onClick={() => {

@@ -31,9 +31,9 @@ async function CoursesList() {
           <TableHeader>
             <TableRow>
               <TableCell>Title</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Field</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell className="text-center">Description</TableCell>
+              <TableCell className="text-center">Field</TableCell>
+              <TableCell className="text-center">Status</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -56,9 +56,13 @@ async function CoursesList() {
                   </Avatar>
                   {Course.Title}
                 </TableCell>
-                <TableCell>{Course.Description}</TableCell>
-                <TableCell>{Course.Field}</TableCell>
-                <TableCell>{Course.IsLive ? "Live" : "Recorded"}</TableCell>
+                <TableCell className="text-center">
+                  {Course.Description}
+                </TableCell>
+                <TableCell className="text-center">{Course.Field}</TableCell>
+                <TableCell className="text-center">
+                  {Course.IsLive ? "Live" : "Recorded"}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

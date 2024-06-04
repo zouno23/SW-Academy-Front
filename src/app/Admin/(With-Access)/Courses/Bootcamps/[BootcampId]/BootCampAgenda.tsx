@@ -15,9 +15,12 @@ function BootCampAgenda({ Courses }: any) {
 
   useEffect(() => {
     let l: any[] = [];
-    for (const course of Courses) {
-      let ls = [...course.Lessons, ...l];
-      l = ls;
+    if (Courses) {
+      for (const course of Courses) {
+        course.Lessons.map((lesson: any) => {
+          l.push({ ...lesson, Teacher: course.Teacher });
+        });
+      }
     }
     setLessons(l || []);
   }, []);
@@ -37,11 +40,7 @@ function BootCampAgenda({ Courses }: any) {
     <div className="w-full pb-8 max-w-xs space-y-2 col-span-1 lg:col-span-2 justify-self-center h-full">
       <div className="flex justify-between">
         <h2 className="text-lg font-semibold">Upcoming Live Sessions</h2>
-        <NewStream
-          Lessons={lessons}
-          Teacher={Courses[0]?.Teacher}
-          setStreams={setStreams}
-        />
+        <NewStream Lessons={lessons} setStreams={setStreams} />
       </div>
       <Card className="  h-full grid p-4 max-h-screen">
         <FullCalendar

@@ -1,5 +1,5 @@
 import { GetJWT } from "@/app/Actions/JWTmanagement";
-import Meeting from "./CCMain";
+import Meeting from "./StreamMain";
 
 function Main() {
   const Token = GetJWT();

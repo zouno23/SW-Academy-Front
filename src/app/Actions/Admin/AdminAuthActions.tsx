@@ -39,3 +39,19 @@ export const GetAdminData = async () => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const UpdateAdminData = async (Data: any) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.put<AxiosResponseType>(
+      "http://localhost:9000/Admin/Settings",
+      Data,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

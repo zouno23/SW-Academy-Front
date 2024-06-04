@@ -29,11 +29,9 @@ import moment from "moment";
 
 function NewStream({
   Lessons,
-  Teacher,
   setStreams,
 }: {
   Lessons: any[];
-  Teacher: string;
   setStreams: Dispatch<SetStateAction<any>>;
 }) {
   const router = useRouter();
@@ -52,6 +50,9 @@ function NewStream({
             const Lesson = FormData.get("Lesson");
             const Hours = FormData.get("hours");
             const Minutes = FormData.get("minutes");
+            const Teacher = Lessons.map((l) => {
+              if (l._id === Lesson) return l.Teacher;
+            })[0];
             const date = moment(Date?.StartingDate)
               .add(Number(Hours), "hour")
               .add(Number(Minutes), "minutes")

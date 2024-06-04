@@ -6,6 +6,9 @@ import { useSearchParams } from "next/navigation";
 import { Textarea } from "@/components/ui/textarea";
 import { Popover } from "@/components/ui/popover";
 import NewCourse from "./NewCourseDialog";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
+import DeleteCourseDialogue from "./DeleteCourseDialogue";
 
 function BootCampContent({ camp }: { camp: BootcampType }) {
   const searchParams = useSearchParams();
@@ -32,7 +35,8 @@ function BootCampContent({ camp }: { camp: BootcampType }) {
         <TabsList className="gap-1 flex overflow-x-scroll overflow-y-hidden justify-start p-0 ">
           {Courses?.map((course, index) => (
             <TabsTrigger value={course._id} key={index}>
-              {course.Title}
+              <>{course.Title}</>
+              <DeleteCourseDialogue Course={course._id} />
             </TabsTrigger>
           ))}
         </TabsList>

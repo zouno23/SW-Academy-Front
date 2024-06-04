@@ -31,26 +31,41 @@ async function BootcampsList() {
           <TableHeader>
             <TableRow>
               <TableCell>Title</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Field</TableCell>
-              <TableCell>Enrollements</TableCell>
+              <TableCell className="text-center">Description</TableCell>
+              <TableCell className="text-center">Field</TableCell>
+              <TableCell className="text-center">Enrollements</TableCell>
             </TableRow>
           </TableHeader>
           <TableBody>
             {Bootcamps?.map((camp: any) => (
-              <TableRow className="text-pretty">
+              <TableRow className="">
                 <TableCell className="flex gap-2 items-center text-lg font-semibold">
-                  <Avatar className="size-16 text-sm font-normal">
-                    <AvatarFallback className=" rounded-lg">
-                      {" "}
-                      {GetAbbr(camp.Title)}
-                    </AvatarFallback>
+                  <Avatar className="size-16 text-sm font-normal rounded-lg">
+                    {camp.Cover ? (
+                      <Image
+                        src={"http://localhost:9000/" + camp?.Cover}
+                        alt=""
+                        height={160}
+                        width={160}
+                      />
+                    ) : (
+                      <AvatarFallback className=" rounded-lg">
+                        {" "}
+                        {GetAbbr(camp.Title)}
+                      </AvatarFallback>
+                    )}
                   </Avatar>
                   {camp.Title}
                 </TableCell>
-                <TableCell>{camp.Description}</TableCell>
-                <TableCell>{camp.Field}</TableCell>
-                <TableCell>{camp.Enrollements}</TableCell>
+                <TableCell className="text-center">
+                  <div className="  text-nowrap truncate  max-w-36 ">
+                    {camp.Description}
+                  </div>
+                </TableCell>
+                <TableCell className="text-center">{camp.Field}</TableCell>
+                <TableCell className="text-center">
+                  {camp.Enrollements}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

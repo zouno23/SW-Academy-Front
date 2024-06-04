@@ -4,7 +4,6 @@ import Image from "next/image";
 import LogoutButton from "../../../[Role]/SideBar/LogoutButton";
 import AdminNavButtons from "./AdminNavigationButtons";
 import { GetAdminData } from "@/app/Actions/Admin/AdminAuthActions";
-
 async function AdminSideBar() {
   const { error, response } = await GetAdminData();
   if (error) {
@@ -23,7 +22,16 @@ async function AdminSideBar() {
       />
       <div className="flex flex-col items-center justify-center gap-4 px-4 text-center text-pretty self-start ">
         <Avatar className="size-20 bg-slate-100 border border-slate-100">
-          <AvatarFallback>{abbr}</AvatarFallback>
+          {response.Result.Picture ? (
+            <Image
+              src={"http://localhost:9000/" + response.Result.Picture}
+              alt=""
+              width={160}
+              height={160}
+            />
+          ) : (
+            <AvatarFallback>{abbr}</AvatarFallback>
+          )}
         </Avatar>
         <h3 className="font-semibold text-lg">{Name}</h3>
         <h6 className=" text-sm font-medium text-gray-700/70 ">

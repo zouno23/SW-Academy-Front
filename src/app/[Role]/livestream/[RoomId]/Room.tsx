@@ -9,7 +9,7 @@ import {
   useEffect,
   useState,
 } from "react";
-import { SocketContext } from "./CCMain";
+import { SocketContext } from "./StreamMain";
 import { answerCall, onToggleAudio, onToggleVideo } from "./Utils";
 import { cn } from "@/lib/utils";
 import Messanger from "./MessagingSpace";

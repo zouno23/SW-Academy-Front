@@ -12,7 +12,7 @@ import { useParams } from "next/navigation";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Camera, CameraOff, Mic, MicOff } from "lucide-react";
 import { callUser, onToggleAudio, onToggleVideo } from "./Utils";
-import { SocketContext } from "./CCMain";
+import { SocketContext } from "./StreamMain";
 function Lobby({
   stream,
   setStream,

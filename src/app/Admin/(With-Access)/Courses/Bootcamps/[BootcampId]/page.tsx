@@ -58,9 +58,7 @@ export default async function Component({
           <div className="flex-1 p-6">
             <div className=" gap-8 grid grid-cols-1  lg:grid-cols-5 w-full ">
               <BootCampContent camp={campGetter.response.Result} />
-              <BootCampAgenda
-                streams={campGetter.response.Result?.Courses?.Lessons?.Streams}
-              />
+              <BootCampAgenda streams={campGetter.response.Result?.Courses} />
             </div>
           </div>
         </form>

@@ -4,7 +4,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlusIcon, SendIcon } from "lucide-react";
 import { useContext, useEffect, useRef, useState } from "react";
-import { SocketContext } from "./CCMain";
+import { SocketContext } from "./StreamMain";
 import { useParams } from "next/navigation";
 
 type chat = { message: string; id?: string; role: "you" | "other" }[];
