@@ -16,7 +16,7 @@ export default function RootLayout({
   const IsLoggedIn = GetJWT();
   const role = GetRole();
   if (IsLoggedIn && role) {
-    redirect(`/${role}/Dashboard`);
+    redirect(`/${role}/dashboard`);
   }
   return (
     <section className="h-screen absolute w-screen overflow-hidden flex">

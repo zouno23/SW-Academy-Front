@@ -21,6 +21,12 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Admin/(With-Access)/Courses/Recorded"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/app/Admin/(With-Access)/Courses/Recorded"
+  ],
   "exclude": ["node_modules"]
 }

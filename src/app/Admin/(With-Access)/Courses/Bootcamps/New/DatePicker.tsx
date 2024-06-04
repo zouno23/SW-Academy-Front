@@ -21,19 +21,19 @@ export function DatePicker({
 }: {
   defaultValue: string;
   change: number;
-  TimeRange: any;
-  setTimeRange: React.Dispatch<React.SetStateAction<any>>;
+  TimeRange?: any;
+  setTimeRange?: React.Dispatch<React.SetStateAction<any>>;
 }) {
   const [date, setDate] = React.useState<Date>();
   React.useEffect(() => {
     if (change === 1) {
-      setTimeRange({ ...TimeRange, EndingDate: date });
+      setTimeRange!({ ...TimeRange, EndingDate: date });
     } else {
-      setTimeRange({ ...TimeRange, StartingDate: date });
+      setTimeRange!({ ...TimeRange, StartingDate: date });
     }
   }, [date]);
   let min = new Date();
-  if (TimeRange.StartingDate && change === 1) {
+  if (TimeRange?.StartingDate && change === 1) {
     min = TimeRange.StartingDate;
   }
   return (

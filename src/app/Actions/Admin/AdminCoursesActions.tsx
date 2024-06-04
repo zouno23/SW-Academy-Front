@@ -231,3 +231,66 @@ export const AdminGetBootCamp = async (Id: string) => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const AdminEditBootCamp = async (Id: string, data: any) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.put<AxiosResponseType>(
+      `http://localhost:9000/Admin/Bootcamp?BootcampId=` + Id,
+      data,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const AdminDeleteBootCamp = async (Id: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.delete<AxiosResponseType>(
+      `http://localhost:9000/Admin/Bootcamp?BootcampId=` + Id,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const AdminAddBootCampCourse = async (Id: string, data: any) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.post<AxiosResponseType>(
+      `http://localhost:9000/Admin/Bootcamp/Course?BootcampId=` + Id,
+      data,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const AdminAddStream = async (data: any) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.post<AxiosResponseType>(
+      `http://localhost:9000/Admin/Meeting`,
+      data,
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

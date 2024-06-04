@@ -7,6 +7,7 @@ import "./CalendarDesign.css";
 import { cn } from "@/lib/utils";
 
 export default function TeacherCalendar({ events, className }: any) {
+  console.log(events);
   return (
     <div
       className={cn(
