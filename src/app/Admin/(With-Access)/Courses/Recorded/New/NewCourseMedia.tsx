@@ -7,6 +7,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { CourseCoverMedia } from "@/lib/Types";
 import Link from "next/link";
 import p from "@/../public/next.svg";
+import { usePathname, useRouter } from "next/navigation";
 
 const fileToDataUri = (file: File) =>
   new Promise((resolve, reject) => {
@@ -28,13 +29,10 @@ function Media({
 
   const fileUploadRef = useRef<HTMLInputElement>(null);
 
-  const SubmitRef = useRef<HTMLButtonElement>(null);
-
   const FormRef = useRef<HTMLFormElement>(null);
 
-  const onNext = () => {
-    SubmitRef.current?.click();
-  };
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleImageUpload = (event: MouseEvent) => {
     event.preventDefault();
@@ -73,7 +71,6 @@ function Media({
           <Button
             className=" w-56 h-56 border bg-gray-200 flex items-center justify-center rounded-xl overflow-hidden hover:bg-gray-200 p-0"
             onClick={(e) => handleImageUpload(e)}
-            type="submit"
           >
             <Image
               src={CoverImage || ""}
@@ -98,20 +95,27 @@ function Media({
             standards to be accepted. Important guidelines: 750x440 pixels;
             .jpg, .jpeg,. gif, or .png. no text on the image.
           </p>
-          <Button type="submit" className="hidden" ref={SubmitRef}></Button>
         </form>
       </div>
       <div className="w-full flex justify-between">
-        <Link href="?step=1">
-          <Button className="w-fit text-md mx-2 " onClick={onNext}>
-            Previous
-          </Button>
-        </Link>
-        <Link href="?step=3">
-          <Button className="w-fit text-md mx-2 " onClick={onNext}>
-            Next
-          </Button>
-        </Link>
+        <Button
+          className="w-fit text-md mx-2 "
+          onClick={() => {
+            router.push(pathname + "?step=1");
+          }}
+          type="button"
+        >
+          Previous
+        </Button>
+        <Button
+          type="button"
+          className="w-fit text-md mx-2 "
+          onClick={() => {
+            router.push(pathname + "?step=3");
+          }}
+        >
+          Next
+        </Button>
       </div>
     </>
   );

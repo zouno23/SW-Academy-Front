@@ -19,7 +19,11 @@ export default function RootLayout({
   const role = GetRole();
   if (!IsLoggedIn) redirect("/login");
   if (role == "Teacher" || role == "Student") {
-  } else {
+  } else if (
+    role === "Admin" ||
+    role === "SuperAdmin" ||
+    role === "Asssistant"
+  ) {
     redirect("/Admin");
   }
 

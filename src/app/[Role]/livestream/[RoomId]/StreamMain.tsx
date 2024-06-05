@@ -35,8 +35,8 @@ const Meeting = ({ jwt }: { jwt: string }) => {
   }, [socket]);
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: false, audio: true })
+    navigator?.mediaDevices
+      ?.getUserMedia({ video: false, audio: true })
       .then((stream) => {
         setStream(stream);
       });

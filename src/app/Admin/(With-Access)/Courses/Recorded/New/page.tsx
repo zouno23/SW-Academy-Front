@@ -16,7 +16,7 @@ function AddCourse({
   return (
     <main
       className={cn(
-        "bg-gray-100 w-full h-full relative overflow-auto overflow-x-hidden p-8 flex flex-col gap-8 dark:bg-black z-0 items-end "
+        "bg-gray-100 w-full h-full relative overflow-auto overflow-x-hidden flex flex-col gap-8 dark:bg-black z-0 items-end "
       )}
     >
       <NewCourseHeader searchParams={searchParams} />

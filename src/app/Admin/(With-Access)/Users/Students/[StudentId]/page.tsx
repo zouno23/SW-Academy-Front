@@ -20,7 +20,7 @@ async function Student({ params }: { params: { slug: string } | any }) {
     throw new Error(CompletionGetter.error?.message);
   }
   return (
-    <main className=" overflow-y-auto grid grid-cols-2 md:grid-cols-6 gap-8 h-full ">
+    <main className=" overflow-y-auto grid grid-cols-2 lg:grid-cols-6 gap-8 h-full ">
       <StudentDetails student={StudentGetterApi.response?.Result} />
       <StudentWorkSpace
         CompletionGetter={CompletionGetter}

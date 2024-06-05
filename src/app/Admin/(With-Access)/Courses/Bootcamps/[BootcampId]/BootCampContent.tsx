@@ -45,7 +45,6 @@ function BootCampContent({ camp }: { camp: BootcampType }) {
             <CourseTable Course={course} key={index} />
           </TabsContent>
         ))}
-        <TabsContent value="Lessons"></TabsContent>
       </Tabs>
     </div>
   );

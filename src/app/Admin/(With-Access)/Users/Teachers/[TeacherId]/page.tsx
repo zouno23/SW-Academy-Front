@@ -24,7 +24,7 @@ async function Teacher({ params }: { params: { slug: string } | any }) {
     throw new Error(TeacherSellingsGetter.error?.message);
   }
   return (
-    <main className=" overflow-y-auto grid grid-cols-2 md:grid-cols-6 gap-8 h-full ">
+    <main className=" overflow-y-auto grid grid-cols-2 lg:grid-cols-6 gap-8 h-full ">
       <TeacherDetails teacher={TeacherGetterApi.response?.Result} />
       <TeacherWorkspace
         SellingsGetter={TeacherSellingsGetter}

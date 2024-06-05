@@ -8,12 +8,12 @@ async function Users() {
     throw new Error(UsersApiResult.error.message);
   }
   return (
-    <main className="grid grid-cols-2 gap-8 h-full place-items-evenly ">
+    <main className=" flex flex-col md:grid md:grid-cols-2 gap-8 h-full md:place-items-evenly ">
       <NewestStudents />
       <NewestTeachers />
       <NewestAdmins />
       <AdminPieChart UsersData={UsersApiResult.response?.Result} />
-      <footer className=" col-span-2 h-4"></footer>
+      <footer className=" w-screen md:col-span-2 h-4"></footer>
     </main>
   );
 }

@@ -58,7 +58,7 @@ function BasicInfo({
 
   return (
     <>
-      <div className=" bg-white border w-full h-full  flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8 pt-4 shadow-md">
+      <div className=" bg-white border w-full flex flex-col rounded-xl divide-y-2 dark:bg-slate-900 px-8 pb-8  pt-4 shadow-md ">
         <h2 className="p-4 text-xl font-semibold">Basic Information</h2>
         <form
           action={(FormData) => updateInput(FormData)}

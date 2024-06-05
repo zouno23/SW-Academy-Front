@@ -76,7 +76,7 @@ export default function form() {
             className=" text-white font-medium text-sm bg-blue-600 hover:bg-blue-600/95"
             variant="outline"
           >
-            Button
+            Save
           </Button>
         </div>
       </form>

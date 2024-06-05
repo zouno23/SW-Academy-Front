@@ -24,7 +24,7 @@ function TeacherDetails({ teacher }: { teacher: teacher }) {
   const [EditMode, setEditMode] = useState(false);
   const router = useRouter();
   return (
-    <div className="bg-white dark:bg-gray-950 rounded-lg shadow-md col-span-2 text-pretty max-h-screen ">
+    <div className="bg-white dark:bg-gray-950 rounded-lg shadow-md col-span-2 text-pretty lg:max-h-screen ">
       {!EditMode ? (
         <>
           <div className="h-32 bg-gradient-to-r from-[#637bf1d5] to-[#615cf6] rounded-t-lg relative">
@@ -58,12 +58,12 @@ function TeacherDetails({ teacher }: { teacher: teacher }) {
             <div className="flex gap-4">
               <h3 className="text-lg font-semibold">Email:</h3>
 
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-400 text-pretty overflow-clip  break-words">
                 {Teacher.Email}
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-pretty overflow-clip  break-words">
               <h3 className="text-lg font-semibold">Date Joined:</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 {moment(Teacher.Date).format("DD/MM/YYYY") + ""}

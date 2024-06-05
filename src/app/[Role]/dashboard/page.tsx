@@ -13,7 +13,6 @@ async function Dashboard({
   };
 }) {
   const phoneSideBar = searchParams.sidebar || "false";
-  console.log(searchParams);
   return (
     <main
       className={cn(

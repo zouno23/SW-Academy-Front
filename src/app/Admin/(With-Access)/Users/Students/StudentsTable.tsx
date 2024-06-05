@@ -62,7 +62,7 @@ function StudentsTable({ Students }: { Students: Students }) {
           <TableRow>
             <TableCell>Student</TableCell>
             <TableCell className="text-center">Total Courses</TableCell>
-            <TableCell className="text-center"> Totla BootCamps</TableCell>
+            <TableCell className="text-center"> Total BootCamps</TableCell>
             <TableCell className="text-center">Status</TableCell>
           </TableRow>
         </TableHeader>

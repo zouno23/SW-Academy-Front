@@ -59,19 +59,19 @@ function StudentDetails({ student }: { student: student }) {
             <div className="flex gap-4">
               <h3 className="text-lg font-semibold">Email:</h3>
 
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-gray-500 dark:text-gray-400 text-pretty overflow-clip  break-words">
                 {Student.Email}
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-pretty overflow-clip  break-words">
               <h3 className="text-lg font-semibold">Date Joined:</h3>
               <p className="text-gray-500 dark:text-gray-400">
                 {moment(Student.Date).format("DD/MM/YYYY") + ""}
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-pretty overflow-clip  break-words">
               <h3 className="text-lg font-semibold">Status:</h3>
 
               <p className="text-gray-500 dark:text-gray-400">
@@ -84,6 +84,7 @@ function StudentDetails({ student }: { student: student }) {
               className="w-full text-md"
               variant={"outline"}
               type="button"
+              onClick={() => setEditMode(true)}
             >
               Edit
             </Button>

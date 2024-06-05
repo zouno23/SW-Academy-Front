@@ -50,10 +50,10 @@ const MostActiveTeachers = async () => {
           Most Active Teachers by course publishings and sellings this month
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 overflow-x-auto">
         {mostActiveTeachers.length > 0 ? (
           mostActiveTeachers.map((teacher: UserType) => (
-            <div className="grid grid-cols-4 gap-2 w-full bg-slate-50 px-4 p-2 rounded-xl ">
+            <div className="grid grid-cols-4 gap-2 w-max min-w-full bg-slate-50 px-4 p-2 rounded-xl  ">
               <div className="flex gap-8 items-center col-span-2 justify-start ">
                 <Avatar className="size-20 bg-slate-100 border border-slate-100">
                   {teacher.Picture ? (
@@ -100,10 +100,10 @@ const MostActiveStudents = async () => {
           Most Active Students by courses Completed and Purshases this month
         </p>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 overflow-x-auto">
         {mostActiveStudents.length > 0 ? (
           mostActiveStudents.map((student: UserType) => (
-            <div className="grid grid-cols-4 gap-2 w-full bg-slate-50 px-4 p-2 rounded-xl ">
+            <div className="grid grid-cols-4 gap-2 w-max min-w-full bg-slate-50 px-4 p-2 rounded-xl ">
               <div className="flex gap-8 items-center col-span-2 justify-start ">
                 <Avatar className="size-20 bg-slate-100 border border-slate-100">
                   {student.Picture ? (

@@ -14,7 +14,7 @@ async function AdminSideBar() {
   const abbr = Name?.split(" ").map((name: string) => name[0]);
 
   return (
-    <nav className=" grid  grid-cols-1 py-8 p-4 gap-8 h-screen  ">
+    <nav className=" grid  grid-cols-1 py-8 p-4 gap-8 h-screen  overflow-y-auto ">
       <Image
         src={Logo}
         alt="SW Academy"

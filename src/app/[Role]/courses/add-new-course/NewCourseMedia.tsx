@@ -103,14 +103,10 @@ function Media({
       </div>
       <div className="w-full flex justify-between">
         <Link href="?step=1">
-          <Button className="w-fit text-md mx-2 " onClick={onNext}>
-            Previous
-          </Button>
+          <Button className="w-fit text-md mx-2 ">Previous</Button>
         </Link>
         <Link href="?step=3">
-          <Button className="w-fit text-md mx-2 " onClick={onNext}>
-            Next
-          </Button>
+          <Button className="w-fit text-md mx-2 ">Next</Button>
         </Link>
       </div>
     </>

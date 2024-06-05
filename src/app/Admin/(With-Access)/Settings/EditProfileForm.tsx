@@ -26,10 +26,6 @@ function SettingsForm({ Admin }: { Admin: any }) {
       ref={formRef}
       className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 md:p-10 space-y-8"
       action={async (FormData) => {
-        const Name = FormData.get("Name");
-        const Email = FormData.get("Email");
-        const Password = FormData.get("Password");
-        const Picture = FormData.get("Picture");
         const setter = await UpdateAdminData(FormData);
         formRef.current?.reset();
         if (setter.error) throw new Error(setter.error.message);

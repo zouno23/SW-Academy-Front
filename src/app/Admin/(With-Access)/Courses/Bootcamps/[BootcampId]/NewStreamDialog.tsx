@@ -50,9 +50,9 @@ function NewStream({
             const Lesson = FormData.get("Lesson");
             const Hours = FormData.get("hours");
             const Minutes = FormData.get("minutes");
-            const Teacher = Lessons.map((l) => {
-              if (l._id === Lesson) return l.Teacher;
-            })[0];
+            const Teacher = Lessons.filter((l) => {
+              if (l._id === Lesson) return l;
+            })[0].Teacher._id;
             const date = moment(Date?.StartingDate)
               .add(Number(Hours), "hour")
               .add(Number(Minutes), "minutes")

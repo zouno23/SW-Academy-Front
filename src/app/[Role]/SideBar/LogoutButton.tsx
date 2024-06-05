@@ -18,7 +18,7 @@ function LogoutButton() {
         DestroyLocalStorage();
         role === "Teacher" || role === "Student"
           ? router.replace("/login")
-          : router.replace("/Admin/login");
+          : router.replace("/");
       }}
     >
       <LogOut className="size-5" />
