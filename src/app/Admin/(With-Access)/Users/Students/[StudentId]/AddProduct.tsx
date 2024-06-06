@@ -95,6 +95,7 @@ const AddCourse = () => {
           const type = "Course";
           const setter = await AddStudentCourse({ ProductId, StudentId, type });
           if (setter.error) {
+            console.log(setter);
             throw new Error(setter.error.message);
           } else {
             toast({

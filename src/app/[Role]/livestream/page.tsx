@@ -16,6 +16,7 @@ import { JoinMeeting, StartMeeting } from "./EnteringButtons";
 import { GetRole } from "@/app/Actions/RoleCookieManagement";
 import { GetTeacherAgenda } from "@/app/Actions/DashboardActions";
 import { GetTeacherLessons } from "@/app/Actions/CoursesActions";
+import { GetMeetinsList } from "@/app/Actions/MeetingActions";
 
 export default async function LiveStream() {
   const role = GetRole();
@@ -24,6 +25,13 @@ export default async function LiveStream() {
     const { error1, response1 } = await GetTeacherAgenda();
     if (error1) console.log(error1);
     events = await response1?.Result;
+  } else if (role === "Student") {
+    const Getter = await GetMeetinsList();
+    if (Getter.error?.status === 500) throw new Error();
+    const Meetings = Getter.response?.Result;
+    events = Meetings.map((meeting: any) => {
+      return { start: meeting.Date, title: meeting.Lesson.Title };
+    });
   }
 
   const { error, response } = await GetTeacherLessons();

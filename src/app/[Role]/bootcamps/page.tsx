@@ -5,7 +5,6 @@ import { GetRole } from "@/app/Actions/RoleCookieManagement";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 async function BootCamp() {
-  const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const Role = GetRole();
   const getter = await GetBootCamps();
   console.log(getter);
@@ -35,7 +34,7 @@ async function BootCamp() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-8 ">
             {BootCamps.Owned.length > 0 ? (
               BootCamps.Owned.map((item: any, index: string) => (
-                <BootCampCard BootCamp={item} key={index} />
+                <BootCampCard BootCamp={item.BootCamp} key={index} />
               ))
             ) : (
               <NotFound />

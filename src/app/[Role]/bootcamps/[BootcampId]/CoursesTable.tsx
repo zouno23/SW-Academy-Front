@@ -17,6 +17,7 @@ import {
   AdminUpdateLesson,
 } from "@/app/Actions/Admin/AdminCoursesActions";
 import { useRouter } from "next/navigation";
+import { GetUserLocalStorage } from "@/app/Hooks/LocalStorage";
 export type CourseType = {
   Title: string;
   Description: string;
@@ -25,6 +26,7 @@ export type CourseType = {
   Lessons: any[];
 };
 function CourseTable({ Course }: { Course: CourseType }) {
+  const Role = GetUserLocalStorage()?.Role;
   const router = useRouter();
   const [EditMode, setEditMode] = useState(-1);
   const [lesson, setLesson] = useState({ Title: "", Description: "" });
@@ -34,7 +36,7 @@ function CourseTable({ Course }: { Course: CourseType }) {
       <div className="grid grid-cols-1">
         <div className="flex justify-between mb-4">
           <h2 className="text-lg font-semibold">{Course?.Title}</h2>
-          <NewLesson Course={Course} />
+          {Role === "Teacher" && <NewLesson Course={Course} />}
         </div>
         <div className="grid gap-2">
           <Badge className="w-fit space-x-1" variant={"secondary"}>
@@ -52,13 +54,15 @@ function CourseTable({ Course }: { Course: CourseType }) {
               <TableHead>Lesson</TableHead>
               <TableHead className="text-center">Description</TableHead>
               <TableHead className="text-center">Streamings</TableHead>
-              <TableHead className="text-center">Actions</TableHead>
+              {Role === "Teacher" && (
+                <TableHead className="text-center">Actions</TableHead>
+              )}
             </TableRow>
           </TableHeader>
           <TableBody>
             {Lessons?.map((Lesson, index) => (
               <>
-                {EditMode == index ? (
+                {EditMode == index && Role === "Teacher" ? (
                   <TableRow>
                     <TableCell>
                       <Input
@@ -113,31 +117,37 @@ function CourseTable({ Course }: { Course: CourseType }) {
                     <TableCell className="text-center">
                       {Lesson?.Streams?.length}
                     </TableCell>
-                    <TableCell className="text-center">
-                      <Button
-                        variant="ghost"
-                        onClick={() => {
-                          setEditMode(index);
-                          setLesson({
-                            Title: Lesson?.Title,
-                            Description: Lesson?.Description,
-                          });
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                        variant={"ghost"}
-                        onClick={async () => {
-                          const deleter = await AdminDeleteLesson(Lesson._id);
-                          if (deleter.error)
-                            throw new Error(deleter.error.message);
-                          router.refresh();
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </TableCell>
+                    {Role === "Teacher" && (
+                      <TableCell className="text-center">
+                        <>
+                          <Button
+                            variant="ghost"
+                            onClick={() => {
+                              setEditMode(index);
+                              setLesson({
+                                Title: Lesson?.Title,
+                                Description: Lesson?.Description,
+                              });
+                            }}
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            variant={"ghost"}
+                            onClick={async () => {
+                              const deleter = await AdminDeleteLesson(
+                                Lesson._id
+                              );
+                              if (deleter.error)
+                                throw new Error(deleter.error.message);
+                              router.refresh();
+                            }}
+                          >
+                            Delete
+                          </Button>
+                        </>
+                      </TableCell>
+                    )}
                   </TableRow>
                 )}
               </>
