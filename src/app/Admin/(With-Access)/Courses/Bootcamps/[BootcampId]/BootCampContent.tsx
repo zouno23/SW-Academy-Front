@@ -31,7 +31,10 @@ function BootCampContent({ camp }: { camp: BootcampType }) {
         <h2 className="font-bold text-xl py-4 px-2">Courses</h2>
         <NewCourse Field={camp?.Field} />
       </div>
-      <Tabs defaultValue={Courses[0]?._id} className="rounded-lg border p-2">
+      <Tabs
+        defaultValue={Courses[0]?._id}
+        className="rounded-lg border p-2 shadow-md"
+      >
         <TabsList className="gap-1 flex overflow-x-scroll overflow-y-hidden justify-start p-0 ">
           {Courses?.map((course, index) => (
             <TabsTrigger value={course._id} key={index}>

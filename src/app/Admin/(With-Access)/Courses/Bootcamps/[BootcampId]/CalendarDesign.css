@@ -1,5 +1,5 @@
 .fc {
-    @apply bg-transparent w-full  h-full  justify-center  ;
+    @apply bg-transparent w-full  h-full  justify-center max-h-96 border p-2 shadow-md ;
     @apply rounded-3xl ;
   }
 

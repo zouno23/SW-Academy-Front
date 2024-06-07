@@ -17,6 +17,7 @@ import {
   AdminUpdateLesson,
 } from "@/app/Actions/Admin/AdminCoursesActions";
 import { useRouter } from "next/navigation";
+import { DocumentsTable } from "./DocumentsTable";
 export type CourseType = {
   Title: string;
   Description: string;
@@ -52,6 +53,8 @@ function CourseTable({ Course }: { Course: CourseType }) {
               <TableHead>Lesson</TableHead>
               <TableHead className="text-center">Description</TableHead>
               <TableHead className="text-center">Streamings</TableHead>
+              <TableHead className="text-center">Documents</TableHead>
+
               <TableHead className="text-center">Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -85,6 +88,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
                     <TableCell className="text-center">
                       {Lesson?.Streams?.length}
                     </TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Documents?.length || 0}
+                    </TableCell>
                     <TableCell>
                       <Button
                         variant="ghost"
@@ -112,6 +118,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
                     </TableCell>
                     <TableCell className="text-center">
                       {Lesson?.Streams?.length}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Documents?.length || 0}
                     </TableCell>
                     <TableCell className="text-center">
                       <Button
@@ -144,6 +153,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
             ))}
           </TableBody>
         </Table>
+      </div>
+      <div className="mb-6 border rounded-xl">
+        <DocumentsTable props={Lessons} CourseId={Course._id} />
       </div>
     </>
   );

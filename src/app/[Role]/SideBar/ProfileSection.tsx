@@ -15,7 +15,6 @@ export default async function ProfileSection() {
   const { error, response } = await GetUserProfile();
   if (error) throw error;
   const role = GetRole();
-  console.log("http://localhost:9000/" + response.Result.Picture);
   return (
     <div className="grid place-items-center gap-4 ">
       <div className="gap-3 grid text-center place-items-center">

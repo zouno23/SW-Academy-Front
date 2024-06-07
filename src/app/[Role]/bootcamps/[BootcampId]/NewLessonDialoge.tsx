@@ -1,4 +1,7 @@
 "use client";
+import { AddLesson, UploadDocumentation } from "@/app/Actions/CoursesActions";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Dialog,
   DialogClose,
@@ -10,94 +13,87 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
-import { GetAllTeachers } from "@/app/Actions/Admin/AdminUsersActions";
-import { useEffect, useRef, useState } from "react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  AdminAddBootCampCourse,
-  AdminAddLesson,
-} from "@/app/Actions/Admin/AdminCoursesActions";
-import { useParams, useRouter } from "next/navigation";
-import { CourseType } from "./CoursesTable";
 
-function NewLesson({ Course }: { Course: CourseType }) {
-  const router = useRouter();
-  const closeref = useRef<HTMLButtonElement | null>(null);
-
+export function NewLesson({ CourseId, setLessons, Lessons }: any) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"}>Add Lesson</Button>
+        <Button size="sm" className="mx-4" variant={"outline"}>
+          Add Lesson
+        </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle>Add New Lesson</DialogTitle>
+          <DialogDescription>
+            Fill out the form to create a new lesson.
+          </DialogDescription>
+        </DialogHeader>
         <form
+          className="grid gap-4 py-4"
           action={async (FormData) => {
-            const Title = FormData.get("Title");
+            const Title = FormData.get("Title") as string;
             const Description = FormData.get("Description");
-            const Teacher = FormData.get("Teacher");
-            console.log(Title, Description, Teacher);
-            const setter = await AdminAddLesson(Course._id, {
+            const { error, response } = await AddLesson(CourseId, {
               Title,
               Description,
             });
 
-            if (setter.error) {
-              throw new Error(setter.error.message);
-            } else {
-              closeref.current?.click();
-              router.refresh();
+            if (response) {
+              const files = FormData.getAll("files");
+              const file = files[0] as File;
+              if (file.size > 0) {
+                const UploadResult = await UploadDocumentation(
+                  response.Result._id,
+                  CourseId,
+                  FormData
+                );
+                if (UploadResult.error) throw new error();
+              }
+              setLessons([...Lessons, response.Result]);
             }
           }}
         >
-          <DialogHeader>
-            <DialogTitle>Add Lesson</DialogTitle>
-            <DialogDescription>
-              Create a new Lesson for this Bootcamp. Click save when you're
-              done.
-            </DialogDescription>
-          </DialogHeader>
-          <div className="grid gap-4 py-4">
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="Title" className="text-right">
-                Title
-              </label>
-              <Input
-                id="Title"
-                name="Title"
-                className="col-span-3"
-                required
-                placeholder="Lesson Title"
-              />
-            </div>
-            <div className="grid grid-cols-4 items-center gap-4">
-              <label htmlFor="Description" className="text-right">
-                Description
-              </label>
-              <Textarea
-                required
-                id="Description"
-                name="Description"
-                className="col-span-3"
-                placeholder="Lesson Description"
-              />
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label className="text-right" htmlFor="title">
+              Title
+            </label>
+            <Input
+              className="col-span-3"
+              id="title"
+              name="Title"
+              placeholder="Enter lesson title"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-start gap-4">
+            <label className="text-right" htmlFor="description">
+              Description
+            </label>
+            <Textarea
+              className="col-span-3 min-h-[120px]"
+              id="description"
+              name="Description"
+              placeholder="Enter lesson description"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label className="text-right" htmlFor="files">
+              File
+            </label>
+            <div className="col-span-3 flex items-center gap-2">
+              <Input id="file" type="file" name="files" multiple max={5} />
             </div>
           </div>
           <DialogFooter>
-            <Button type="submit">Save changes</Button>
-            <DialogClose ref={closeref}></DialogClose>
+            <DialogClose asChild>
+              <Button type="submit">Save Lesson</Button>
+            </DialogClose>
+            <DialogClose asChild>
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
           </DialogFooter>
         </form>
       </DialogContent>
     </Dialog>
   );
 }
-
-export default NewLesson;

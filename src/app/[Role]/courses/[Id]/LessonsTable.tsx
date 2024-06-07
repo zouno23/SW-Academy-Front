@@ -1,5 +1,9 @@
 "use client";
-import { deleteLesson, updateLesson } from "@/app/Actions/CoursesActions";
+import {
+  FinishLesson,
+  deleteLesson,
+  updateLesson,
+} from "@/app/Actions/CoursesActions";
 import { Button } from "@/components/ui/button";
 import {
   TableHead,
@@ -12,10 +16,22 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { FileEdit, Trash } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AddNewLesson } from "./AddLesson";
+import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "@/components/ui/use-toast";
 
-export function LessonsTable({ props, role }: { props: any; role: string }) {
+export function LessonsTable({
+  props,
+  role,
+  state,
+  CompletedLessons,
+}: {
+  CompletedLessons: any;
+  props: any;
+  role: string;
+  state?: string;
+}) {
   const path = usePathname();
   const router = useRouter();
   const CourseId = path.split("/")[3];
@@ -63,8 +79,7 @@ export function LessonsTable({ props, role }: { props: any; role: string }) {
             <TableHead>Lesson</TableHead>
             <TableHead>Description</TableHead>
             <TableHead className="hidden md:table-cell">Documents</TableHead>
-            <TableHead className="hidden md:table-cell">Streaming</TableHead>
-            {role === "Teacher" && (
+            {(role === "Teacher" || state === "Owned") && (
               <TableHead className="hidden md:table-cell">Actions</TableHead>
             )}
           </TableRow>
@@ -87,9 +102,6 @@ export function LessonsTable({ props, role }: { props: any; role: string }) {
                     {item?.Documents?.length || 0}
                   </TableCell>
                   <TableCell className="hidden md:table-cell">
-                    {item?.Streamings?.length || 0}
-                  </TableCell>
-                  <TableCell className="hidden md:table-cell">
                     <Button type="submit">Submit</Button>
                   </TableCell>
                 </TableRow>
@@ -102,9 +114,7 @@ export function LessonsTable({ props, role }: { props: any; role: string }) {
                 <TableCell className="hidden md:table-cell">
                   {item?.Documents?.length || 0}
                 </TableCell>
-                <TableCell className="hidden md:table-cell">
-                  {item?.Streamings?.length || 0}
-                </TableCell>
+
                 {role === "Teacher" && (
                   <TableCell className="hidden md:table-cell">
                     <div className="flex items-center gap-2">
@@ -135,6 +145,41 @@ export function LessonsTable({ props, role }: { props: any; role: string }) {
                         <Trash className="h-4 w-4 " />
                         <span className="sr-only">Delete</span>
                       </Button>
+                    </div>
+                  </TableCell>
+                )}
+                {state === "Owned" && (
+                  <TableCell>
+                    <div className="flex items-center space-x-2">
+                      {!CompletedLessons.includes(item._id) ? (
+                        <Button
+                          disabled={CompletedLessons.includes(item._id)}
+                          id="Finish"
+                          type="submit"
+                          onClick={async () => {
+                            const setter = await FinishLesson(
+                              item._id,
+                              CourseId
+                            );
+                            if (setter.error)
+                              throw new Error(setter.error.message);
+                            else if (setter.response) {
+                              router.refresh();
+                              toast({
+                                description: "successfully updated",
+                                variant: "verified",
+                                icon: "verified",
+                              });
+                            }
+                          }}
+                          variant={"outline"}
+                        >
+                          {" "}
+                          Complete Lesson
+                        </Button>
+                      ) : (
+                        "Completed"
+                      )}
                     </div>
                   </TableCell>
                 )}

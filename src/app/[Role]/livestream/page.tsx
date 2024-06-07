@@ -56,7 +56,7 @@ export default async function LiveStream() {
           </div>
         </div>
         <div className="flex gap-8 ">
-          <StartMeeting Lessons={Lessons} />
+          {role === "Teacher" && <StartMeeting Lessons={Lessons} />}
           <JoinMeeting />
         </div>
       </div>

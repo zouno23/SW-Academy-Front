@@ -115,15 +115,6 @@ function Lobby({
             Join Room
           </Button>
         </div>
-        <div className="mt-auto flex w-full items-center justify-end gap-4">
-          <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8">
-              <AvatarImage alt="@username" src="" />
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <div className="text-sm font-medium">John Doe</div>
-          </div>
-        </div>
       </div>
     </main>
   );

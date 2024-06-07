@@ -29,7 +29,7 @@ function Course({ props, role }: any) {
             </div>
           ) : (
             <span className=" text-end">
-              {props.Progress + "%"}
+              {props.Progress.toFixed(2) + "%"}
               <Progress
                 value={parseInt(props.Progress)}
                 className="mt-1 border-blue-600"

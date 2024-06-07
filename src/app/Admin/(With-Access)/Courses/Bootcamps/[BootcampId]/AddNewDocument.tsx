@@ -1,4 +1,5 @@
 "use client";
+import { AdminUploadDocumentation } from "@/app/Actions/Admin/AdminCoursesActions";
 import { UploadDocumentation } from "@/app/Actions/CoursesActions";
 import { Button } from "@/components/ui/button";
 
@@ -48,7 +49,7 @@ function AddNewDocument({ props, courseId }: any) {
             const file = files[0] as File;
             const Lesson = FormData.get("Lesson") as string;
             if (file?.size > 0 && file) {
-              const UploadResult = await UploadDocumentation(
+              const UploadResult = await AdminUploadDocumentation(
                 Lesson,
                 CourseId,
                 FormData

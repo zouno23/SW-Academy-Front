@@ -174,3 +174,37 @@ export const GetTeacherLessons = async () => {
     return { error: e.response?.data, response: null };
   }
 };
+
+export const RateCourse = async (Id: string, Rating: number) => {
+  try {
+    console.log(Id, Rating);
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.put<AxiosResponseType>(
+      `${url}/course/rating?Id=` + Id,
+      { Rating },
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    console.log(response);
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};
+
+export const FinishLesson = async (LessonId: string, CourseId: string) => {
+  try {
+    const jwt = GetJWT();
+    if (!jwt) throw new Error("No JWT available");
+    const response: AxiosResponseType = await axios.put<AxiosResponseType>(
+      `${url}/FinishLesson?LessonId=` + LessonId + "&CourseId=" + CourseId,
+      { a: 1 },
+      { headers: { Authorization: `Bearer ${jwt}` } }
+    );
+    return { error: null, response: response.data };
+  } catch (error: any) {
+    const e: AxiosErrorType = error;
+    return { error: e.response?.data, response: null };
+  }
+};

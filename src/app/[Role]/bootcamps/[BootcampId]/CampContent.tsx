@@ -20,7 +20,7 @@ function BootCampContent({ camp }: { camp: BootcampType }) {
           </div>
           <Tabs
             defaultValue={Courses[0]?._id}
-            className="rounded-lg border p-2"
+            className="rounded-lg border p-2 shadow-md"
           >
             <TabsList className="gap-1 flex overflow-x-scroll overflow-y-hidden justify-start p-0 ">
               {Courses?.map((course, index) => (

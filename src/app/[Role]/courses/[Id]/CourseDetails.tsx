@@ -10,6 +10,8 @@ import {
 } from "lucide-react";
 import StarsRating from "@/components/StarsRating";
 import { GetRole } from "@/app/Actions/RoleCookieManagement";
+import StudentRate from "./StudentRating";
+import { Progress } from "@/components/ui/progress";
 
 export function CourseDetails({ props }: { props: any }) {
   const role = GetRole();
@@ -50,16 +52,24 @@ export function CourseDetails({ props }: { props: any }) {
               {props?.Price || "Free"}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <Check className="h-5 w-5 text-green-500" />
-            <span className="text-sm text-green-500">Live</span>
-          </div>
+          {props.Progress >= 0 && (
+            <div className="flex items-center gap-2">
+              <>
+                <Progress value={props.Progress} />
+                <p>{props.Progress.toFixed(2) + "%"}</p>
+              </>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <div className="flex items-center gap-0.5">
-              <StarsRating Rating={props?.Rating} key="15" />
+              {role === "Student" && props.Progress >= 0 ? (
+                <StudentRate rating={props.StudentRating} />
+              ) : (
+                <StarsRating Rating={props?.Rating} key="15" />
+              )}
             </div>
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              {props?.Rating || "0.0"}
+              {props?.StudentRating || props?.Rating}
             </span>
           </div>
         </div>
@@ -67,17 +77,11 @@ export function CourseDetails({ props }: { props: any }) {
       <div className="grid gap-4 px-4">
         <p className="text-gray-500 dark:text-gray-400">{props?.Description}</p>
 
-        {role === "Student" ? (
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        {role === "Student" && props.Progress === undefined && (
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-end ">
             <Button size="sm">Enroll Now</Button>
-            <div className="flex items-center gap-2">
-              <Share className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-              <Button size="sm" variant="ghost">
-                Share
-              </Button>
-            </div>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

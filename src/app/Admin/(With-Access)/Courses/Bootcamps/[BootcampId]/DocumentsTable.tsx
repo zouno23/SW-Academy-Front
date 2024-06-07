@@ -32,9 +32,7 @@ export function DocumentsTable({
     <div className="p-4 md:p-6">
       <div className="w-full items-center flex justify-between p-4 md:p-6">
         <h2 className="text-lg font-semibold">Course Resources</h2>
-        {Role === "Teacher" && (
-          <AddNewDocument props={props} courseId={CourseId} />
-        )}
+        <AddNewDocument props={props} courseId={CourseId} />
       </div>
       <div className="mt-4 grid gap-8">
         {Docs?.map((item: any) =>

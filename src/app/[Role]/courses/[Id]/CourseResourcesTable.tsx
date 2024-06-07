@@ -11,14 +11,23 @@ export function CourseResourcesTable({ props }: { props: any }) {
       <Tabs defaultValue="lessons">
         <TabsList>
           <TabsTrigger value="lessons">Lessons</TabsTrigger>
-          <TabsTrigger value="Documents">Resources</TabsTrigger>
+          {(props.Progress >= 0 || role === "Teacher") && (
+            <TabsTrigger value="Documents">Resources</TabsTrigger>
+          )}
         </TabsList>
         <TabsContent value="lessons">
-          <LessonsTable props={props?.Lessons} role={role || ""} />
+          <LessonsTable
+            props={props?.Lessons}
+            CompletedLessons={props?.CompletedLessons}
+            role={role || ""}
+            state={props.Progress != undefined ? "Owned" : ""}
+          />
         </TabsContent>
-        <TabsContent value="Documents">
-          <DocumentsTable props={props?.Lessons} />
-        </TabsContent>
+        {(props.Progress >= 0 || role === "Teacher") && (
+          <TabsContent value="Documents">
+            <DocumentsTable props={props?.Lessons} />
+          </TabsContent>
+        )}
       </Tabs>
     </div>
   );

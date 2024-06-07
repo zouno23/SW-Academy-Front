@@ -4,7 +4,7 @@ import Logo from "@/../public/logo.svg";
 import { Button } from "@/components/ui/button";
 function NavBar() {
   return (
-    <header className="px-4 lg:px-6 h-14 flex items-center bg-slate-50/100 rounded-xl">
+    <header className="px-4 lg:px-6 h-14 flex items-center bg-slate-50/100 rounded-xl dark:bg-slate-900 overflow-x-auto">
       <Link
         href="#"
         className="flex items-center justify-center"

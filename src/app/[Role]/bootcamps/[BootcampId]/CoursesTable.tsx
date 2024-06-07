@@ -9,7 +9,6 @@ import {
   TableCell,
 } from "@/components/ui/table";
 import { GraduationCap } from "lucide-react";
-import NewLesson from "./NewLessonDialoge";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import {
@@ -18,6 +17,9 @@ import {
 } from "@/app/Actions/Admin/AdminCoursesActions";
 import { useRouter } from "next/navigation";
 import { GetUserLocalStorage } from "@/app/Hooks/LocalStorage";
+import { NewLesson } from "./NewLessonDialoge";
+import { DocumentsTable } from "../../courses/[Id]/DocumentsTable";
+import { deleteLesson, updateLesson } from "@/app/Actions/CoursesActions";
 export type CourseType = {
   Title: string;
   Description: string;
@@ -31,6 +33,7 @@ function CourseTable({ Course }: { Course: CourseType }) {
   const [EditMode, setEditMode] = useState(-1);
   const [lesson, setLesson] = useState({ Title: "", Description: "" });
   const Lessons = Course.Lessons;
+  console.log(Course);
   return (
     <>
       <div className="grid grid-cols-1">
@@ -46,7 +49,7 @@ function CourseTable({ Course }: { Course: CourseType }) {
           <span className="text-gray-400 px-2">{Course?.Description}</span>
         </div>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 ">
         <h3 className=" text-base font-semibold px-2">Lessons</h3>
         <Table>
           <TableHeader>
@@ -54,6 +57,7 @@ function CourseTable({ Course }: { Course: CourseType }) {
               <TableHead>Lesson</TableHead>
               <TableHead className="text-center">Description</TableHead>
               <TableHead className="text-center">Streamings</TableHead>
+              <TableHead className="text-center">Documents</TableHead>
               {Role === "Teacher" && (
                 <TableHead className="text-center">Actions</TableHead>
               )}
@@ -89,15 +93,15 @@ function CourseTable({ Course }: { Course: CourseType }) {
                     <TableCell className="text-center">
                       {Lesson?.Streams?.length}
                     </TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Documents?.length || 0}
+                    </TableCell>
                     <TableCell>
                       <Button
                         variant="ghost"
                         onClick={async () => {
                           setEditMode(-1);
-                          const setter = await AdminUpdateLesson(
-                            Lesson._id,
-                            lesson
-                          );
+                          const setter = await updateLesson(Lesson._id, lesson);
                           if (setter.error)
                             throw new Error(setter.error.message);
                           setLesson({ Title: "", Description: "" });
@@ -117,6 +121,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
                     <TableCell className="text-center">
                       {Lesson?.Streams?.length}
                     </TableCell>
+                    <TableCell className="text-center">
+                      {Lesson?.Documents?.length || 0}
+                    </TableCell>
                     {Role === "Teacher" && (
                       <TableCell className="text-center">
                         <>
@@ -135,9 +142,7 @@ function CourseTable({ Course }: { Course: CourseType }) {
                           <Button
                             variant={"ghost"}
                             onClick={async () => {
-                              const deleter = await AdminDeleteLesson(
-                                Lesson._id
-                              );
+                              const deleter = await deleteLesson(Lesson._id);
                               if (deleter.error)
                                 throw new Error(deleter.error.message);
                               router.refresh();
@@ -154,6 +159,9 @@ function CourseTable({ Course }: { Course: CourseType }) {
             ))}
           </TableBody>
         </Table>
+      </div>
+      <div className="mb-6 border rounded-xl">
+        <DocumentsTable props={Lessons} CourseId={Course._id} />
       </div>
     </>
   );

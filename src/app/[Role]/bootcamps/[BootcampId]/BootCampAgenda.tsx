@@ -40,7 +40,7 @@ function BootCampAgenda({ Courses }: any) {
       <div className="flex justify-between">
         <h2 className="text-lg font-semibold">Upcoming Live Sessions</h2>
       </div>
-      <Card className="  h-full grid p-4 max-h-screen">
+      <Card className=" min-h-screen border-0   grid py-4 max-h-fit">
         <FullCalendar
           plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
           initialView="timeGridWeek"

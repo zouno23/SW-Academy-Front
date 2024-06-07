@@ -35,7 +35,12 @@ async function Camp({
       <div className="flex-1 p-6">
         <div className=" gap-8 grid grid-cols-1  lg:grid-cols-5 w-full ">
           <BootCampContent camp={campGetter.response.Result} />
-          <BootCampAgenda Courses={campGetter.response.Result?.Courses} />
+          <BootCampAgenda
+            Courses={
+              campGetter.response.Result?.Courses ||
+              campGetter.response.Result?.Streams
+            }
+          />
         </div>
       </div>
     </main>
