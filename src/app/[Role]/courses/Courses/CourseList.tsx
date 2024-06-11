@@ -146,7 +146,7 @@ async function CourseList({
         </div>
       </div>
       <div className="overflow-x-auto w-full h-max  flex-col flex px-8 py-2">
-        <ListHeader role={role || ""} />
+        <ListHeader role={role || ""} type={ListType as string} />
         {subList.length <= 0 ? <NoCourses /> : ListMapping()}
       </div>
 

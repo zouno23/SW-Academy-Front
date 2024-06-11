@@ -42,7 +42,7 @@ function Course({ props, role }: any) {
         <div className="basis-1/3 flex justify-center">
           {" "}
           {role === "Teacher" ? (
-            "Price"
+            props.Price || "Free"
           ) : props?.IsCompleted ? (
             <Button disabled>Completed</Button>
           ) : (
@@ -52,7 +52,7 @@ function Course({ props, role }: any) {
         <div className="basis-1/3 flex justify-center">
           {" "}
           {role === "Teacher" ? (
-            "Number of Sellings"
+            props.Sellings
           ) : (
             <StarsRating Rating={props?.Course.Rating} key="rating" />
           )}

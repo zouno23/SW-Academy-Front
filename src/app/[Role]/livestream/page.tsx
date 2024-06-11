@@ -29,7 +29,7 @@ export default async function LiveStream() {
     const Getter = await GetMeetinsList();
     if (Getter.error?.status === 500) throw new Error();
     const Meetings = Getter.response?.Result;
-    events = Meetings.map((meeting: any) => {
+    events = Meetings?.map((meeting: any) => {
       return { start: meeting.Date, title: meeting.Lesson.Title };
     });
   }
